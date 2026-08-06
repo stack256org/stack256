@@ -160,31 +160,23 @@
 
           <ol class="steps">
             <li>
-              <h3>Install the package</h3>
+              <h3>Run one command</h3>
               <p>
-                Postgres, nginx, a bundled Node runtime and a bundled Claude Code
-                CLI all come with it. Nothing else needs installing to serve the
-                app.
+                Docker, PostgreSQL, nginx, a bundled Node runtime and a bundled
+                Claude Code CLI all come with it — installed, configured and
+                started before the command returns. There is nothing to wire
+                together afterwards.
               </p>
               <pre><code>curl -fsSL https://apt.stack256.org/install.sh | sudo sh</code></pre>
             </li>
             <li>
-              <h3>Sign the service into Claude</h3>
+              <h3>Sign it into Claude</h3>
               <p>
-                Do this before the first chat, or every turn fails with nothing
-                to run.
+                The one step an installer cannot do for you, because it needs
+                your account. Until it is done, every turn fails with nothing to
+                run.
               </p>
               <pre><code>sudo paco auth</code></pre>
-            </li>
-            <li>
-              <h3>Give it Docker</h3>
-              <p>
-                Chats run in containers, and the package only recommends Docker
-                rather than requiring it. Without this the UI serves fine and
-                every chat fails.
-              </p>
-              <pre><code>sudo apt install docker.io
-sudo usermod -aG docker paco &amp;&amp; sudo systemctl restart paco</code></pre>
             </li>
             <li>
               <h3>Open it</h3>
@@ -233,7 +225,10 @@ sudo usermod -aG docker paco &amp;&amp; sudo systemctl restart paco</code></pre>
               </tr>
               <tr>
                 <th scope="row">Containers</th>
-                <td>Docker, for chats. Recommended, not required, to install</td>
+                <td>
+                  Docker, for chats — installed and wired up by the installer,
+                  not something you set up first
+                </td>
               </tr>
               <tr>
                 <th scope="row">Model access</th>
