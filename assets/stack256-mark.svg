@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="312.54 674 373.98 652" role="img" aria-label="Stack256">
+  <mask id="s256-mark-clip" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="312" y="674" width="375" height="652">
+    <path d="M312.54 674H686.523V1326H312.54V674Z" fill="#fff"/>
+  </mask>
+  <g mask="url(#s256-mark-clip)">
+    <path d="M984.378 1040.11H744.377L906.62 1202.35L853.029 1255.94L687.699 1090.61V1325.38H611.947V1093.44L439.773 1265.61L382.691 1208.54L551.108 1040.11H312.849V959.265H556.481L392.496 795.272L446.08 741.689L611.947 907.688V674H687.699V903.388L857.461 733.626L914.543 790.84L746.119 959.265H984.378V1040.11Z" fill="#FF3301"/>
+  </g>
+</svg>
