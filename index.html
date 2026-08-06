@@ -20,511 +20,39 @@
     <meta property="og:url" content="https://stack256.org" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <!--
-      The mark, as an inline SVG favicon: the same geometry as the logo below, so
-      there is one definition of it and no binary asset to keep in step.
-    -->
-    <link
-      rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%231c1b1b'/%3E%3Cg stroke='%23ff3308' stroke-width='15'%3E%3Cpath d='M70 8V92'/%3E%3Cpath d='M16 50H70'/%3E%3Cpath d='M29 17L70 50'/%3E%3Cpath d='M29 83L70 50'/%3E%3C/g%3E%3C/svg%3E"
-    />
-
-    <style>
-      /*
-       * Deliberately one dark theme rather than light/dark variants. The mark is
-       * a saturated orange-red that only holds its weight on near-black; on a
-       * white field it vibrates and stops reading as a logo. Committing to the
-       * brand surface is the design decision, not an oversight.
-       */
-      :root {
-        --ink: #1c1b1b;
-        --ink-raised: #232222;
-        --edge: #322f2f;
-        --brand: #ff3308;
-        --text: #ececea;
-        --muted: #9a9694;
-      }
-
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-      }
-
-      html {
-        -webkit-text-size-adjust: 100%;
-      }
-
-      body {
-        margin: 0;
-        background: var(--ink);
-        color: var(--text);
-        font-family:
-          ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-          "Helvetica Neue", Arial, sans-serif;
-        font-size: 17px;
-        line-height: 1.6;
-        -webkit-font-smoothing: antialiased;
-      }
-
-      /*
-       * A single wash of brand colour behind the hero, kept very low in opacity.
-       *
-       * `absolute`, not `fixed`: fixed pins it to the viewport, so it travels
-       * down the page as you scroll and lays a visible tint across whatever
-       * section you happen to be reading. Absolute anchors it to the top of the
-       * document, which is the one place it belongs.
-       */
-      body::before {
-        content: "";
-        position: absolute;
-        inset: 0 0 auto 0;
-        height: min(70vh, 640px);
-        background: radial-gradient(
-          62% 78% at 22% 0%,
-          rgb(255 51 8 / 13%),
-          transparent 68%
-        );
-        pointer-events: none;
-        z-index: 0;
-      }
-
-      .wrap {
-        position: relative;
-        z-index: 1;
-        max-width: 62rem;
-        margin: 0 auto;
-        padding: 0 1.5rem;
-      }
-
-      /* ---------- logo ---------- */
-
-      .logo {
-        display: flex;
-        align-items: center;
-        gap: 0.85rem;
-      }
-
-      .logo svg {
-        display: block;
-        width: clamp(2.5rem, 6vw, 3.4rem);
-        height: auto;
-        flex: none;
-      }
-
-      .wordmark {
-        font-weight: 800;
-        /* Condensed to sit with the mark's vertical bar. `font-stretch` is
-           honoured by variable system faces; the narrow fallbacks cover the
-           rest. */
-        font-stretch: 87.5%;
-        font-family:
-          ui-sans-serif, system-ui, "Helvetica Neue", "Arial Narrow", Arial,
-          sans-serif;
-        letter-spacing: -0.015em;
-        line-height: 0.86;
-        font-size: clamp(1.25rem, 3.2vw, 1.7rem);
-        text-transform: uppercase;
-      }
-
-      /* ---------- header ---------- */
-
-      header {
-        padding: 2rem 0 0;
-      }
-
-      .header-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      .header-links {
-        display: flex;
-        gap: 1.5rem;
-        font-size: 0.94rem;
-      }
-
-      a {
-        color: inherit;
-      }
-
-      .header-links a {
-        color: var(--muted);
-        text-decoration: none;
-        transition: color 0.15s;
-      }
-
-      .header-links a:hover,
-      .header-links a:focus-visible {
-        color: var(--text);
-      }
-
-      /* ---------- hero ---------- */
-
-      .hero {
-        padding: clamp(3.5rem, 11vw, 8rem) 0 clamp(2.5rem, 6vw, 4rem);
-        max-width: 46rem;
-      }
-
-      .eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.55rem;
-        margin: 0 0 1.5rem;
-        padding: 0.32rem 0.8rem 0.32rem 0.6rem;
-        border: 1px solid var(--edge);
-        border-radius: 999px;
-        color: var(--muted);
-        font-size: 0.82rem;
-        letter-spacing: 0.02em;
-      }
-
-      .dot {
-        width: 0.45rem;
-        height: 0.45rem;
-        border-radius: 50%;
-        background: var(--brand);
-        flex: none;
-      }
-
-      h1 {
-        margin: 0 0 1.4rem;
-        font-size: clamp(2.35rem, 7.2vw, 4.5rem);
-        line-height: 1.02;
-        letter-spacing: -0.032em;
-        font-weight: 800;
-      }
-
-      /*
-       * The second sentence is the one that matters, so it gets its own line
-       * instead of wrapping wherever the measure happens to run out — which put
-       * "All of" on one line and "them yours." on the next. `block` rather than
-       * a `<br>` so the break is a layout decision and disappears if the type
-       * scale changes.
-       */
-      h1 .accent {
-        display: block;
-        color: var(--brand);
-      }
-
-      .lede {
-        margin: 0;
-        max-width: 38rem;
-        font-size: clamp(1.05rem, 2.1vw, 1.28rem);
-        line-height: 1.55;
-        color: #cfcbc9;
-      }
-
-      /* ---------- counter ---------- */
-
-      .counter {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: baseline;
-        gap: 0.6rem 1.4rem;
-        margin: 2.75rem 0 0;
-        padding: 1.25rem 0 0;
-        border-top: 1px solid var(--edge);
-      }
-
-      .counter .n {
-        font-size: clamp(1.9rem, 5vw, 2.6rem);
-        font-weight: 800;
-        letter-spacing: -0.03em;
-        line-height: 1;
-      }
-
-      .counter .of {
-        color: var(--muted);
-        font-size: 0.95rem;
-      }
-
-      .track {
-        flex: 1 1 12rem;
-        height: 5px;
-        min-width: 8rem;
-        border-radius: 999px;
-        background: var(--edge);
-        overflow: hidden;
-      }
-
-      /*
-       * Width is 2/256 — a real number, not a flattering one. It is meant to
-       * look like the beginning of something rather than a nearly-finished
-       * progress bar.
-       */
-      .track span {
-        display: block;
-        height: 100%;
-        width: 0.78%;
-        min-width: 4px;
-        border-radius: 999px;
-        background: var(--brand);
-      }
-
-      /* ---------- sections ---------- */
-
-      section {
-        padding: clamp(3rem, 7vw, 5rem) 0;
-        border-top: 1px solid var(--edge);
-      }
-
-      h2 {
-        margin: 0 0 0.6rem;
-        font-size: clamp(1.4rem, 3.4vw, 1.85rem);
-        letter-spacing: -0.022em;
-        font-weight: 700;
-      }
-
-      .section-lede {
-        margin: 0 0 2.25rem;
-        max-width: 36rem;
-        color: var(--muted);
-      }
-
-      /* Sub-headings inside a section, for the two install routes. */
-      .sub {
-        margin: 2.25rem 0 0.4rem;
-        font-size: 1rem;
-        font-weight: 700;
-        letter-spacing: -0.005em;
-      }
-
-      .sub:first-of-type {
-        margin-top: 0;
-      }
-
-      .sub-lede {
-        margin: 0 0 1rem;
-        max-width: 36rem;
-        color: var(--muted);
-        font-size: 0.96rem;
-      }
-
-      .sub-lede a {
-        color: var(--text);
-        text-decoration-color: #55504f;
-        text-underline-offset: 3px;
-      }
-
-      /* ---------- principles ---------- */
-
-      .principles {
-        display: grid;
-        gap: 1.5rem 2.5rem;
-        grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-        margin: 0;
-        padding: 0;
-        list-style: none;
-      }
-
-      .principles h3 {
-        margin: 0 0 0.4rem;
-        font-size: 1.02rem;
-        font-weight: 700;
-      }
-
-      /* No space before `::before` — `h3 ::before` is a descendant selector and
-         matches nothing here, which silently dropped these accents entirely. */
-      .principles h3::before {
-        content: "";
-        display: inline-block;
-        width: 0.6rem;
-        height: 2px;
-        margin-right: 0.55rem;
-        vertical-align: 0.28em;
-        background: var(--brand);
-      }
-
-      .principles p {
-        margin: 0;
-        color: var(--muted);
-        font-size: 0.97rem;
-      }
-
-      /* ---------- products ---------- */
-
-      .products {
-        display: grid;
-        gap: 1rem;
-        grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
-      }
-
-      .card {
-        display: flex;
-        flex-direction: column;
-        gap: 0.6rem;
-        padding: 1.4rem;
-        border: 1px solid var(--edge);
-        border-radius: 12px;
-        background: var(--ink-raised);
-        text-decoration: none;
-        transition:
-          border-color 0.15s,
-          transform 0.15s;
-      }
-
-      .card:hover,
-      .card:focus-visible {
-        border-color: #4a4544;
-        transform: translateY(-2px);
-      }
-
-      .card-top {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-      }
-
-      .card h3 {
-        margin: 0;
-        font-size: 1.12rem;
-        font-weight: 700;
-      }
-
-      .card .idx {
-        color: var(--muted);
-        font-size: 0.8rem;
-        font-variant-numeric: tabular-nums;
-        flex: none;
-      }
-
-      .card p {
-        margin: 0;
-        color: var(--muted);
-        font-size: 0.96rem;
-      }
-
-      /* How this product is distributed — stated per card, because "install any
-         of it" was not true: they do not all ship the same way. */
-      .card .meta {
-        margin-top: auto;
-        padding-top: 0.5rem;
-        color: #837e7c;
-        font-size: 0.82rem;
-      }
-
-      .card .meta code {
-        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-        font-size: 0.95em;
-        color: #a09b99;
-      }
-
-      .card .go {
-        margin-top: 0;
-        padding-top: 0.4rem;
-        color: var(--brand);
-        font-size: 0.9rem;
-        font-weight: 600;
-      }
-
-      /* ---------- install ---------- */
-
-      pre {
-        margin: 0;
-        padding: 1.1rem 1.2rem;
-        border: 1px solid var(--edge);
-        border-radius: 12px;
-        background: var(--ink-raised);
-        color: #dad6d4;
-        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-        font-size: 0.88rem;
-        line-height: 1.7;
-        /* Long commands scroll inside the block rather than widening the page. */
-        overflow-x: auto;
-      }
-
-      pre .c {
-        color: #7e7a78;
-      }
-
-      /* ---------- footer ---------- */
-
-      footer {
-        padding: 2.5rem 0 3.5rem;
-        border-top: 1px solid var(--edge);
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.75rem 1.75rem;
-        align-items: center;
-        color: var(--muted);
-        font-size: 0.9rem;
-      }
-
-      footer a {
-        color: var(--muted);
-        text-decoration-color: #4a4544;
-        text-underline-offset: 3px;
-      }
-
-      footer a:hover {
-        color: var(--text);
-      }
-
-      footer .spacer {
-        margin-left: auto;
-      }
-
-      /* Respect a reduced-motion preference: the only motion here is hover
-         lift, so remove it rather than reduce it. */
-      @media (prefers-reduced-motion: reduce) {
-        .card {
-          transition: none;
-        }
-        .card:hover,
-        .card:focus-visible {
-          transform: none;
-        }
-      }
-    </style>
+    <!-- The real mark, as a file rather than a hand-copied inline path: the
+         home page and both product pages use it, and three transcriptions of
+         the same geometry is three chances to get it wrong. -->
+    <link rel="icon" href="/assets/stack256-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/assets/site.css" />
   </head>
 
   <body>
+    <a class="skip" href="#main">Skip to content</a>
     <div class="wrap">
       <header>
         <div class="header-row">
-          <!--
-            The mark: a vertical bar with three arms converging on it. Drawn as
-            four strokes in a 100x100 box so it scales cleanly and needs no
-            raster asset.
-          -->
-          <div class="logo">
-            <svg viewBox="0 0 100 100" role="img" aria-label="Stack256">
-              <g
-                stroke="#ff3308"
-                stroke-width="15"
-                fill="none"
-                stroke-linecap="butt"
-              >
-                <path d="M70 8V92" />
-                <path d="M16 50H70" />
-                <path d="M29 17L70 50" />
-                <path d="M29 83L70 50" />
-              </g>
-            </svg>
+          <a class="logo" href="/" aria-label="Stack256 home">
+            <img src="/assets/stack256-mark.svg" alt="" width="48" height="84" />
             <div class="wordmark" aria-hidden="true">Stack<br />256</div>
-          </div>
+          </a>
 
           <nav class="header-links">
-            <a href="https://github.com/Stack256org">GitHub</a>
+            <a href="/paco/">Paco</a>
+            <a href="/docket/">Docket</a>
             <a href="https://apt.stack256.org">Packages</a>
+            <a href="https://github.com/Stack256org">GitHub</a>
           </nav>
         </div>
       </header>
 
-      <main>
+      <main id="main">
         <div class="hero">
-          <p class="eyebrow"><span class="dot"></span> Open source, self-hosted</p>
-
+          <span class="eyebrow"><span class="dot"></span>Open source, self-hosted</span>
           <h1>
             Two hundred and fifty-six applications.
             <span class="accent">All of them yours.</span>
           </h1>
-
           <p class="lede">
             The software people run their work and their lives on should not be
             rented, mined for data, or switched off when someone else changes
@@ -544,7 +72,6 @@
           <p class="section-lede">
             Not a style guide. A set of promises we do not intend to break.
           </p>
-
           <ul class="principles">
             <li>
               <h3>Yours to run</h3>
@@ -576,22 +103,30 @@
             Both are installable today, and both run entirely on your own
             hardware.
           </p>
-
           <div class="products">
-            <a class="card" href="https://github.com/Stack256org/paco">
+            <a class="card" href="/paco/">
+              <img class="card-mark" src="/assets/paco-mark.svg" alt="" />
               <div class="card-top">
                 <h3>Paco</h3>
                 <span class="idx">001</span>
               </div>
               <p>
-                Describe what you want built, and an AI writes the code for you —
-                on your own computer, where you can try it before you keep it.
+                Describe what you want built, and an agent writes it — in a
+                sandbox on your own machine, on its own branch, ending in a pull
+                request you review.
               </p>
-              <span class="meta">Debian package &middot; <code>apt install paco</code></span>
-              <span class="go">View source &rarr;</span>
+              <p class="meta">Debian package &middot; <code>apt install paco</code></p>
+              <p class="go">Read more &rarr;</p>
             </a>
 
-            <a class="card" href="https://github.com/Stack256org/docket">
+            <a class="card" href="/docket/">
+              <img
+                class="card-mark"
+                src="/assets/docket-mark.svg"
+                alt=""
+                width="537"
+                height="537"
+              />
               <div class="card-top">
                 <h3>Docket</h3>
                 <span class="idx">002</span>
@@ -601,9 +136,26 @@
                 nothing slipping through, and your customers&rsquo; words stay
                 with you.
               </p>
-              <span class="meta">Container image &middot; <code>ghcr.io/stack256org/docket</code></span>
-              <span class="go">View source &rarr;</span>
+              <p class="meta">
+                Container image &middot; <code>ghcr.io/stack256org/docket</code>
+              </p>
+              <p class="go">Read more &rarr;</p>
             </a>
+
+            <div class="card card--ghost">
+              <div class="card-top">
+                <h3>Next</h3>
+                <span class="idx">003</span>
+              </div>
+              <p>
+                254 to go. Each one replaces something you currently rent, and
+                each one ships the same way: open, installable, and yours.
+              </p>
+              <p class="meta">
+                Suggestions are issues on
+                <a href="https://github.com/Stack256org">GitHub</a>.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -621,12 +173,11 @@
             <a href="https://apt.stack256.org">apt.stack256.org</a> lists what is
             in it today.
           </p>
-
           <pre><code><span class="c"># add the repository, once</span>
 curl -fsSL https://apt.stack256.org/stack256-archive-keyring.gpg \
-  | sudo tee /usr/share/keyrings/stack256-archive-keyring.gpg &gt; /dev/null
+  | sudo tee /etc/apt/keyrings/stack256-archive-keyring.gpg &gt; /dev/null
 
-echo "deb [signed-by=/usr/share/keyrings/stack256-archive-keyring.gpg] \
+echo "deb [signed-by=/etc/apt/keyrings/stack256-archive-keyring.gpg] \
 https://apt.stack256.org stable main" \
   | sudo tee /etc/apt/sources.list.d/stack256.list
 
@@ -638,24 +189,23 @@ sudo apt update &amp;&amp; sudo apt install paco</code></pre>
             Docker Compose, Coolify, Dokploy, Kubernetes. Each repository
             documents its own compose file.
           </p>
-
           <pre><code>docker pull ghcr.io/stack256org/docket</code></pre>
         </section>
 
         <section>
           <h2>Why 256</h2>
-          <p class="section-lede" style="max-width: 40rem">
+          <p class="lede" style="font-size: 1.05rem">
             Because a handful of good open-source tools is a hobby, and a
             complete set is an alternative. Two hundred and fifty-six is enough
             to run a small company on without ever renting software again — and
             it is a number large enough that we cannot get there quietly, or
             alone. If you want to help, every repository is open.
           </p>
-          <p style="margin: 0">
-            <a href="https://github.com/Stack256org" class="go" style="color: var(--brand); font-weight: 600; text-decoration: none">
-              Start with the code &rarr;
-            </a>
-          </p>
+          <div class="hero-actions">
+            <a class="btn btn--primary" href="https://github.com/Stack256org"
+              >Start with the code &rarr;</a
+            >
+          </div>
         </section>
       </main>
 

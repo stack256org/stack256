@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Paco — self-hosted coding agents · Stack256</title>
+    <meta
+      name="description"
+      content="Describe a task and an agent works in an isolated sandbox until it is done — editing files, running the app, committing, and opening a pull request. Runs entirely on your own machine."
+    />
+    <meta name="theme-color" content="#1c1b1b" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Paco — self-hosted coding agents" />
+    <meta
+      property="og:description"
+      content="Describe a task and an agent works in an isolated sandbox until it is done. No vendor account, no API key — it runs on your own hardware."
+    />
+    <meta property="og:url" content="https://stack256.org/paco/" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/assets/paco-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/assets/site.css" />
+    <style>
+      /*
+       * Paco's accent, taken from the mark's sparkle. Only these two custom
+       * properties change; every rule in site.css that draws an accent reads
+       * them, so the page is themed without a second stylesheet.
+       */
+      :root {
+        --brand: #00f7ff;
+        --brand-rgb: 0 247 255;
+        --brand-ink: #04212b;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="wrap">
+      <header>
+        <div class="header-row">
+          <a class="logo" href="/" aria-label="Stack256 home">
+            <img src="/assets/stack256-mark.svg" alt="" width="48" height="84" />
+            <div class="wordmark" aria-hidden="true">Stack<br />256</div>
+          </a>
+
+          <nav class="header-links">
+            <a href="/paco/" aria-current="page">Paco</a>
+            <a href="/docket/">Docket</a>
+            <a href="https://apt.stack256.org">Packages</a>
+            <a href="https://github.com/Stack256org/paco">GitHub</a>
+          </nav>
+        </div>
+      </header>
+
+      <main id="main">
+        <div class="hero">
+          <img
+            class="product-mark"
+            src="/assets/paco-mark.svg"
+            alt="Paco"
+            width="1748"
+            height="542"
+          />
+          <span class="eyebrow"><span class="dot"></span>Stack256 &middot; 001</span>
+          <h1>
+            Describe the task.
+            <span class="accent">Review the pull request.</span>
+          </h1>
+          <p class="lede">
+            Paco runs coding agents on your own hardware. Each one works in an
+            isolated sandbox until the job is done — editing files, running the
+            app, committing, and opening a pull request you review. No vendor
+            account, no API key.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn--primary" href="#install">How to install it</a>
+            <a class="btn" href="https://github.com/Stack256org/paco"
+              >Source on GitHub</a
+            >
+          </div>
+        </div>
+
+        <section>
+          <h2>What makes it different</h2>
+          <p class="section-lede">
+            Most of these are consequences of one decision: run it yourself, on a
+            real machine, with real git.
+          </p>
+          <ul class="principles">
+            <li>
+              <h3>Your Claude subscription</h3>
+              <p>
+                The agent is the Claude Code CLI, driven headlessly. It signs in
+                with the subscription you already pay for — there is no API key
+                to buy and no per-token bill from us.
+              </p>
+            </li>
+            <li>
+              <h3>A sandbox per session</h3>
+              <p>
+                Work happens in a Docker container against a workspace directory
+                on the host. Because the workspace is a real directory, state
+                survives container restarts without snapshots.
+              </p>
+            </li>
+            <li>
+              <h3>Real git, not a diff view</h3>
+              <p>
+                A session is a repository; a chat is a worktree on its own
+                <code>chat/&lt;id&gt;</code> branch. Two chats can touch the same
+                file without colliding, and each ends in its own pull request.
+              </p>
+            </li>
+            <li>
+              <h3>Destructive actions ask first</h3>
+              <p>
+                Reads, in-worktree edits and ordinary dev commands run untouched.
+                <code>rm -rf</code>, force pushes, <code>sudo</code> and writes
+                outside the worktree stop and wait for you.
+              </p>
+            </li>
+            <li>
+              <h3>Runs survive restarts</h3>
+              <p>
+                Each step is persisted to Postgres by the durable workflow
+                engine, so a run outlives a reboot and can be resumed or
+                cancelled rather than lost.
+              </p>
+            </li>
+            <li>
+              <h3>Work is tiered across models</h3>
+              <p>
+                An Opus-class model orchestrates while Sonnet and Haiku subagents
+                do the mechanical work — which is where most of the token volume
+                goes.
+              </p>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>How it fits together</h2>
+          <p class="section-lede">
+            The agent runs on the host, with the chat&rsquo;s worktree as its
+            working directory. The container is where the generated app runs — so
+            a dev server has to be started inside it to be reachable.
+          </p>
+          <pre><code>Browser  →  Next.js + durable workflow  →  Claude Code (host)  →  Docker sandbox</code></pre>
+        </section>
+
+        <section id="install">
+          <h2>Installing it</h2>
+          <p class="section-lede">
+            One command on a Linux host running systemd. It adds the signed
+            Stack256 APT source and installs the <code>paco</code> package.
+          </p>
+
+          <ol class="steps">
+            <li>
+              <h3>Install the package</h3>
+              <p>
+                Postgres, nginx, a bundled Node runtime and a bundled Claude Code
+                CLI all come with it. Nothing else needs installing to serve the
+                app.
+              </p>
+              <pre><code>curl -fsSL https://apt.stack256.org/install.sh | sudo sh</code></pre>
+            </li>
+            <li>
+              <h3>Sign the service into Claude</h3>
+              <p>
+                Do this before the first chat, or every turn fails with nothing
+                to run.
+              </p>
+              <pre><code>sudo paco auth</code></pre>
+            </li>
+            <li>
+              <h3>Give it Docker</h3>
+              <p>
+                Chats run in containers, and the package only recommends Docker
+                rather than requiring it. Without this the UI serves fine and
+                every chat fails.
+              </p>
+              <pre><code>sudo apt install docker.io
+sudo usermod -aG docker paco &amp;&amp; sudo systemctl restart paco</code></pre>
+            </li>
+            <li>
+              <h3>Open it</h3>
+              <p>
+                First run walks you through creating the admin account,
+                confirming the address, and optionally setting up outgoing mail.
+              </p>
+              <pre><code>http://&lt;this host&rsquo;s address&gt;/</code></pre>
+            </li>
+          </ol>
+
+          <p class="note">
+            <strong>The sandbox image is fetched for you.</strong> The first chat
+            pulls <code>ghcr.io/stack256org/paco-sandbox</code>, which is a few
+            gigabytes and happens once. Pre-pull it with
+            <code>docker pull ghcr.io/stack256org/paco-sandbox:latest</code> if
+            you would rather not wait at that moment.
+          </p>
+        </section>
+
+        <section>
+          <h2>What it needs</h2>
+          <table class="spec">
+            <tbody>
+              <tr>
+                <th scope="row">Host</th>
+                <td>Linux with systemd, and root access</td>
+              </tr>
+              <tr>
+                <th scope="row">Architectures</th>
+                <td><code>amd64</code> and <code>arm64</code></td>
+              </tr>
+              <tr>
+                <th scope="row">Ports</th>
+                <td>
+                  80 and 443, free — nginx owns both, and there is no flag to
+                  move them
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Database</th>
+                <td>
+                  PostgreSQL, installed with the package and reached over a Unix
+                  socket — no TCP listener, no password
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Containers</th>
+                <td>Docker, for chats. Recommended, not required, to install</td>
+              </tr>
+              <tr>
+                <th scope="row">Model access</th>
+                <td>An existing Claude subscription, via <code>paco auth</code></td>
+              </tr>
+              <tr>
+                <th scope="row">Updates</th>
+                <td><code>apt upgrade</code>, like everything else on the host</td>
+              </tr>
+              <tr>
+                <th scope="row">Licence</th>
+                <td>Open source — every line readable in the repository</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h2>Have a look at the code</h2>
+          <p class="section-lede">
+            Paco is the first of 256. If something here is wrong, or missing, the
+            issue tracker is the right place for it.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn--primary" href="https://github.com/Stack256org/paco"
+              >Source on GitHub &rarr;</a
+            >
+            <a class="btn" href="https://apt.stack256.org">The package repository</a>
+            <a class="btn" href="/docket/">Docket, the other one &rarr;</a>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <a href="/">Stack256</a>
+        <a href="https://github.com/Stack256org/paco">GitHub</a>
+        <a href="https://apt.stack256.org">Packages</a>
+        <span class="spacer">Open source, and self-hosted, all the way down.</span>
+      </footer>
+    </div>
+  </body>
+</html>

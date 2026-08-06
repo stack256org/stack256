@@ -1,0 +1,706 @@
+/*
+ * Stack256 — one stylesheet for the whole site.
+ *
+ * Extracted from the inline <style> the home page used to carry, because there
+ * are now three pages (/, /paco, /docket) and a fourth is only ever one product
+ * away. Three copies of a design system drift within a week; one file cannot.
+ *
+ * Per-product colour is the single axis of variation. A product page sets
+ * --brand (and --brand-rgb, which the hero wash needs as bare channels) on
+ * :root, and every accent on the page follows — the mark's tint, rules, links,
+ * the progress bar. Nothing else is themed, on purpose: the products should
+ * read as one family with an accent, not as separate sites.
+ */
+
+:root {
+  --ink: #1c1b1b;
+  --ink-raised: #232222;
+  --edge: #322f2f;
+  --text: #ececea;
+  --muted: #9a9694;
+  --dim: #837e7c;
+
+  /* Stack256's own orange, taken from the logo file rather than eyeballed.
+     The site previously used #ff3308, which is close enough to look right on
+     its own and visibly wrong beside the real mark. */
+  --brand: #ff3301;
+  --brand-rgb: 255 51 1;
+  /* Text laid on top of --brand. Near-black rather than white: every accent we
+     use is a bright, saturated hue, and white on it sits below 4.5:1. A product
+     page overrides this alongside --brand so the pair stays legible. */
+  --brand-ink: #1a0c06;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/*
+ * Deliberately one dark theme rather than light/dark variants. The mark is a
+ * saturated orange-red that only holds its weight on near-black; on a white
+ * field it vibrates and stops reading as a logo. Committing to the brand
+ * surface is the design decision, not an oversight.
+ */
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--text);
+  font-family:
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/*
+ * A single wash of brand colour behind the hero, kept very low in opacity.
+ *
+ * `absolute`, not `fixed`: fixed pins it to the viewport, so it travels down
+ * the page as you scroll and lays a visible tint across whatever section you
+ * happen to be reading. Absolute anchors it to the top of the document, which
+ * is the one place it belongs.
+ */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: min(70vh, 640px);
+  background: radial-gradient(
+    62% 78% at 22% 0%,
+    rgb(var(--brand-rgb) / 13%),
+    transparent 68%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrap {
+  position: relative;
+  z-index: 1;
+  max-width: 62rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+a {
+  color: inherit;
+}
+
+/* Skip link — the nav is short, but a keyboard user should not have to walk it
+   on every product page. Visible only once focused. */
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 10;
+  padding: 0.6rem 1rem;
+  background: var(--ink-raised);
+  border: 1px solid var(--edge);
+  border-radius: 0 0 8px 0;
+  text-decoration: none;
+}
+
+.skip:focus {
+  left: 0;
+}
+
+/* ---------- logo ---------- */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+}
+
+.logo svg,
+.logo img {
+  display: block;
+  width: clamp(2.1rem, 5vw, 2.8rem);
+  height: auto;
+  flex: none;
+}
+
+.wordmark {
+  font-weight: 800;
+  /* Condensed to sit with the mark's vertical bar. `font-stretch` is honoured
+     by variable system faces; the narrow fallbacks cover the rest. */
+  font-stretch: 87.5%;
+  font-family:
+    ui-sans-serif, system-ui, "Helvetica Neue", "Arial Narrow", Arial,
+    sans-serif;
+  letter-spacing: -0.015em;
+  line-height: 0.86;
+  font-size: clamp(1.15rem, 3vw, 1.5rem);
+  text-transform: uppercase;
+}
+
+/* ---------- header ---------- */
+
+header {
+  padding: 2rem 0 0;
+}
+
+.header-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  font-size: 0.94rem;
+}
+
+.header-links a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.header-links a:hover,
+.header-links a:focus-visible {
+  color: var(--text);
+}
+
+.header-links a[aria-current="page"] {
+  color: var(--text);
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+  padding: clamp(3.5rem, 11vw, 8rem) 0 clamp(2.5rem, 6vw, 4rem);
+  max-width: 46rem;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0 0 1.5rem;
+  padding: 0.32rem 0.8rem 0.32rem 0.6rem;
+  border: 1px solid var(--edge);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+}
+
+.dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--brand);
+  flex: none;
+}
+
+h1 {
+  margin: 0 0 1.4rem;
+  font-size: clamp(2.35rem, 7.2vw, 4.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.032em;
+  font-weight: 800;
+}
+
+/*
+ * The second sentence is the one that matters, so it gets its own line instead
+ * of wrapping wherever the measure happens to run out. `block` rather than a
+ * `<br>` so the break is a layout decision and disappears if the type scale
+ * changes.
+ */
+h1 .accent {
+  display: block;
+  color: var(--brand);
+}
+
+.lede {
+  margin: 0;
+  max-width: 38rem;
+  font-size: clamp(1.05rem, 2.1vw, 1.28rem);
+  line-height: 1.55;
+  color: #cfcbc9;
+}
+
+/* ---------- product hero ---------- */
+
+/*
+ * A product page leads with its own mark at display size. `min()` rather than a
+ * plain clamp on width: the Paco lockup is 3.2:1 and the Docket mark is 1:1, so
+ * a single width rule would render one of them enormous. Capping height is what
+ * makes two very different aspect ratios sit at the same optical weight.
+ */
+.product-mark {
+  display: block;
+  width: auto;
+  max-width: min(100%, 22rem);
+  height: clamp(3rem, 8vw, 4.5rem);
+  margin: 0 0 1.75rem;
+  align-self: flex-start;
+  object-fit: contain;
+}
+
+.product-mark--square {
+  height: clamp(3.5rem, 9vw, 5.5rem);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 2rem 0 0;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.15rem;
+  border: 1px solid var(--edge);
+  border-radius: 10px;
+  background: var(--ink-raised);
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    border-color 0.15s,
+    background 0.15s;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  border-color: #4a4544;
+  background: #2a2828;
+}
+
+.btn--primary {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: var(--brand-ink);
+}
+
+.btn--primary:hover,
+.btn--primary:focus-visible {
+  background: var(--brand);
+  border-color: var(--brand);
+  filter: brightness(1.08);
+}
+
+/* ---------- counter ---------- */
+
+.counter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.6rem 1.4rem;
+  margin: 2.75rem 0 0;
+  padding: 1.25rem 0 0;
+  border-top: 1px solid var(--edge);
+}
+
+.counter .n {
+  font-size: clamp(1.9rem, 5vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.counter .of {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.track {
+  flex: 1 1 12rem;
+  height: 5px;
+  min-width: 8rem;
+  border-radius: 999px;
+  background: var(--edge);
+  overflow: hidden;
+}
+
+/*
+ * Width is 2/256 — a real number, not a flattering one. It is meant to look
+ * like the beginning of something rather than a nearly-finished progress bar.
+ */
+.track span {
+  display: block;
+  height: 100%;
+  width: 0.78%;
+  min-width: 4px;
+  border-radius: 999px;
+  background: var(--brand);
+}
+
+/* ---------- sections ---------- */
+
+section {
+  padding: clamp(3rem, 7vw, 5rem) 0;
+  border-top: 1px solid var(--edge);
+}
+
+h2 {
+  margin: 0 0 0.6rem;
+  font-size: clamp(1.4rem, 3.4vw, 1.85rem);
+  letter-spacing: -0.022em;
+  font-weight: 700;
+}
+
+.section-lede {
+  margin: 0 0 2.25rem;
+  max-width: 36rem;
+  color: var(--muted);
+}
+
+/* Sub-headings inside a section, for the two install routes. */
+.sub {
+  margin: 2.25rem 0 0.4rem;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+}
+
+.sub:first-of-type {
+  margin-top: 0;
+}
+
+.sub-lede {
+  margin: 0 0 1rem;
+  max-width: 36rem;
+  color: var(--muted);
+  font-size: 0.96rem;
+}
+
+.sub-lede a,
+.section-lede a {
+  color: var(--text);
+  text-decoration-color: #55504f;
+  text-underline-offset: 3px;
+}
+
+/* ---------- principles / feature grid ---------- */
+
+.principles {
+  display: grid;
+  gap: 1.5rem 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.principles h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.02rem;
+  font-weight: 700;
+}
+
+/* No space before `::before` — `h3 ::before` is a descendant selector and
+   matches nothing here, which silently dropped these accents entirely. */
+.principles h3::before {
+  content: "";
+  display: inline-block;
+  width: 0.6rem;
+  height: 2px;
+  margin-right: 0.55rem;
+  vertical-align: 0.28em;
+  background: var(--brand);
+}
+
+.principles p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.97rem;
+}
+
+/* ---------- products ---------- */
+
+.products {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.4rem;
+  border: 1px solid var(--edge);
+  border-radius: 12px;
+  background: var(--ink-raised);
+  text-decoration: none;
+  transition:
+    border-color 0.15s,
+    transform 0.15s;
+}
+
+.card:hover,
+.card:focus-visible {
+  border-color: #4a4544;
+  transform: translateY(-2px);
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 1.12rem;
+  font-weight: 700;
+}
+
+.card .idx {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  flex: none;
+}
+
+.card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.96rem;
+}
+
+/* The card's own mark, small, so the grid is scannable by shape as well as by
+   name. Height-capped for the same aspect-ratio reason as .product-mark. */
+.card-mark {
+  display: block;
+  width: auto;
+  height: 1.6rem;
+  max-width: 9rem;
+  margin: 0 0 0.15rem;
+  /* `.card` is a flex column, so its default `align-items: stretch` pulls a
+     replaced element to the full column width while `height` stays pinned —
+     which flattened the square Docket mark into a smear. Opting out of the
+     stretch is what preserves the intrinsic aspect ratio; `object-fit` is the
+     belt to that braces. */
+  align-self: flex-start;
+  object-fit: contain;
+}
+
+/* How this product is distributed — stated per card, because "install any of
+   it" was not true: they do not all ship the same way. */
+.card .meta {
+  margin-top: auto;
+  padding-top: 0.5rem;
+  color: var(--dim);
+  font-size: 0.82rem;
+}
+
+.card .meta code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.95em;
+  color: #a09b99;
+}
+
+.card .go {
+  margin-top: 0;
+  padding-top: 0.4rem;
+  color: var(--brand);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* A placeholder card for the 254 that do not exist yet. Dashed, unlinked, and
+   deliberately quiet — it marks the shape of the plan without pretending to be
+   a product. */
+.card--ghost {
+  border-style: dashed;
+  background: none;
+  color: var(--dim);
+}
+
+.card--ghost:hover {
+  transform: none;
+  border-color: var(--edge);
+}
+
+/* ---------- spec table ---------- */
+
+.spec {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.94rem;
+  /* Wide rows scroll inside their own box rather than widening the page. */
+  display: block;
+  overflow-x: auto;
+}
+
+.spec th,
+.spec td {
+  text-align: left;
+  padding: 0.6rem 1.25rem 0.6rem 0;
+  border-bottom: 1px solid var(--edge);
+  vertical-align: top;
+}
+
+.spec th {
+  color: var(--muted);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.spec td code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.92em;
+}
+
+/* ---------- steps ---------- */
+
+.steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.steps > li {
+  position: relative;
+  counter-increment: step;
+  padding: 0 0 1.75rem 2.6rem;
+  border-left: 1px solid var(--edge);
+  margin-left: 0.85rem;
+}
+
+.steps > li:last-child {
+  border-left-color: transparent;
+  padding-bottom: 0;
+}
+
+.steps > li::before {
+  content: counter(step);
+  position: absolute;
+  left: -0.85rem;
+  top: 0;
+  display: grid;
+  place-items: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 50%;
+  border: 1px solid var(--edge);
+  background: var(--ink-raised);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.steps h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.7;
+}
+
+.steps p {
+  margin: 0 0 0.8rem;
+  color: var(--muted);
+  font-size: 0.96rem;
+  max-width: 36rem;
+}
+
+/* ---------- code ---------- */
+
+pre {
+  margin: 0;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--edge);
+  border-radius: 12px;
+  background: var(--ink-raised);
+  color: #dad6d4;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  /* Long commands scroll inside the block rather than widening the page. */
+  overflow-x: auto;
+}
+
+pre .c {
+  color: #7e7a78;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+/* ---------- callout ---------- */
+
+.note {
+  margin: 1.25rem 0 0;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--edge);
+  border-left: 2px solid var(--brand);
+  border-radius: 0 10px 10px 0;
+  background: var(--ink-raised);
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.note strong {
+  color: var(--text);
+}
+
+/* ---------- footer ---------- */
+
+footer {
+  padding: 2.5rem 0 3.5rem;
+  border-top: 1px solid var(--edge);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.75rem;
+  align-items: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: var(--muted);
+  text-decoration-color: #4a4544;
+  text-underline-offset: 3px;
+}
+
+footer a:hover {
+  color: var(--text);
+}
+
+footer .spacer {
+  margin-left: auto;
+}
+
+/* Respect a reduced-motion preference: the only motion here is the hover lift,
+   so remove it rather than reduce it. */
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+  .card:hover,
+  .card:focus-visible {
+    transform: none;
+  }
+}

@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Docket — customer support you host yourself · Stack256</title>
+    <meta
+      name="description"
+      content="Every customer message in one place, nothing slipping through, and your customers' words stay on your server. Self-hosted support ticketing, one docker compose away."
+    />
+    <meta name="theme-color" content="#1c1b1b" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Docket — customer support you host yourself" />
+    <meta
+      property="og:description"
+      content="Customers write in without making an account. Your team answers from one queue. It all runs on your own server."
+    />
+    <meta property="og:url" content="https://stack256.org/docket/" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/assets/docket-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/assets/site.css" />
+    <style>
+      /*
+       * Docket's accent, sampled from its own mark rather than chosen to match.
+       * As on the Paco page, these three custom properties are the only
+       * difference — site.css draws every accent from them.
+       */
+      :root {
+        /* Docket's mark is navy on off-white, and navy is unusable as an accent
+           on this near-black surface — it disappears. So the accent is `sand`
+           from Docket's own in-app palette: a real brand colour, drawn from the
+           same family as the mark, and legible here. */
+        --brand: #88bdf2;
+        --brand-rgb: 136 189 242;
+        --brand-ink: #06182c;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="wrap">
+      <header>
+        <div class="header-row">
+          <a class="logo" href="/" aria-label="Stack256 home">
+            <img src="/assets/stack256-mark.svg" alt="" width="48" height="84" />
+            <div class="wordmark" aria-hidden="true">Stack<br />256</div>
+          </a>
+
+          <nav class="header-links">
+            <a href="/paco/">Paco</a>
+            <a href="/docket/" aria-current="page">Docket</a>
+            <a href="https://apt.stack256.org">Packages</a>
+            <a href="https://github.com/Stack256org/docket">GitHub</a>
+          </nav>
+        </div>
+      </header>
+
+      <main id="main">
+        <div class="hero">
+          <img
+            class="product-mark"
+            src="/assets/docket-lockup.svg"
+            alt="Docket"
+            width="1744"
+            height="544"
+          />
+          <span class="eyebrow"><span class="dot"></span>Stack256 &middot; 002</span>
+          <h1>
+            People write when something breaks.
+            <span class="accent">Nothing should slip through.</span>
+          </h1>
+          <p class="lede">
+            Docket puts every customer message in one place, so your whole team
+            can see what is happening and nobody is left waiting. It runs on your
+            own server, which means your customers&rsquo; words stay with you.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn--primary" href="#install">How to install it</a>
+            <a class="btn" href="https://github.com/Stack256org/docket"
+              >Source on GitHub</a
+            >
+          </div>
+        </div>
+
+        <section>
+          <h2>For your customers</h2>
+          <p class="section-lede">
+            The single biggest reason people give up on a support portal is being
+            asked to make an account. So Docket does not ask.
+          </p>
+          <ul class="principles">
+            <li>
+              <h3>No account, no password</h3>
+              <p>
+                They send a request with a name and an email, and get a private
+                link back to read replies, add files, or say it is sorted.
+              </p>
+            </li>
+            <li>
+              <h3>Formatted replies and files</h3>
+              <p>
+                JPG, PNG, PDF, ZIP and TXT up to 10&nbsp;MB, five per request —
+                from both sides of the conversation.
+              </p>
+            </li>
+            <li>
+              <h3>Their own history</h3>
+              <p>
+                Everything they have ever asked, reachable from the same emailed
+                link. Nothing to remember, nothing to sign into.
+              </p>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>For your team</h2>
+          <p class="section-lede">
+            One queue, and the tools to actually work it.
+          </p>
+          <ul class="principles">
+            <li>
+              <h3>A queue you can work</h3>
+              <p>
+                Search, filter, sort and act in bulk. Stages, priorities,
+                categories and tags are all named by you, and apply straight away
+                with no rebuild.
+              </p>
+            </li>
+            <li>
+              <h3>Private notes</h3>
+              <p>
+                Sit in the conversation, clearly marked, and never reach the
+                customer. Saved replies cover the answers you send twenty times a
+                week.
+              </p>
+            </li>
+            <li>
+              <h3>Reply targets that are fair</h3>
+              <p>
+                Set them per priority. The clock pauses while you are waiting on
+                the customer, so their delay is not counted against you.
+              </p>
+            </li>
+            <li>
+              <h3>Reports and an audit trail</h3>
+              <p>
+                Who answered what, how long it took, what people ask about most —
+                with a spreadsheet download, an admin audit log and a per-request
+                history.
+              </p>
+            </li>
+            <li>
+              <h3>An API for your own forms</h3>
+              <p>
+                Build &ldquo;contact support&rdquo; on your own site and let
+                Docket handle the request, the emails and the customer&rsquo;s
+                reply page behind it.
+              </p>
+            </li>
+            <li>
+              <h3>Email that keeps trying</h3>
+              <p>
+                Outgoing mail is queued and retried rather than quietly dropped
+                when your provider has a bad day.
+              </p>
+            </li>
+          </ul>
+        </section>
+
+        <section id="install">
+          <h2>Installing it</h2>
+          <p class="section-lede">
+            You need Docker, and nothing else. No Node.js, no PostgreSQL, no
+            build step — the image is prebuilt and PostgreSQL comes with it.
+          </p>
+
+          <ol class="steps">
+            <li>
+              <h3>Get the two files</h3>
+              <p>A compose file and an environment file. That is the whole setup.</p>
+              <pre><code>curl -O https://raw.githubusercontent.com/stack256org/docket/main/docker-compose.yml
+curl -o .env https://raw.githubusercontent.com/stack256org/docket/main/.env.docker.example</code></pre>
+            </li>
+            <li>
+              <h3>Set two values</h3>
+              <p>
+                <code>APP_SECRET</code> (32+ random characters, from
+                <code>openssl rand -base64 36</code>) and
+                <code>NEXT_PUBLIC_APP_URL</code>. Everything else has a working
+                default.
+              </p>
+            </li>
+            <li>
+              <h3>Start it</h3>
+              <p>
+                This pulls the image, starts PostgreSQL, prepares the database,
+                and leaves the app and its worker running.
+              </p>
+              <pre><code>docker compose up -d</code></pre>
+            </li>
+            <li>
+              <h3>Make your own login</h3>
+              <p>
+                A separate, deliberate step, so you see whether it worked rather
+                than it failing quietly inside a background service.
+              </p>
+              <pre><code>docker compose run --rm app \
+  pnpm create:admin you@example.com "Your Name" "a-strong-password"</code></pre>
+            </li>
+          </ol>
+
+          <p class="note">
+            <strong>No mail server yet?</strong> Every outgoing message — sign-in
+            links included — is written to the worker log instead of sent. That is
+            enough to try the whole product before configuring SMTP.
+          </p>
+        </section>
+
+        <section>
+          <h2>What it needs</h2>
+          <table class="spec">
+            <tbody>
+              <tr>
+                <th scope="row">Host</th>
+                <td>
+                  Anything that runs containers — Compose, Coolify, Dokploy,
+                  Portainer, Kubernetes, Swarm, ECS
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Image</th>
+                <td><code>ghcr.io/stack256org/docket</code></td>
+              </tr>
+              <tr>
+                <th scope="row">Architectures</th>
+                <td><code>amd64</code> and <code>arm64</code>, in every tag</td>
+              </tr>
+              <tr>
+                <th scope="row">Processes</th>
+                <td>
+                  The app, a worker (email does not send without it), and a
+                  one-off migrate step
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Database</th>
+                <td>
+                  PostgreSQL — bundled, or point it at your own (Neon, Supabase,
+                  RDS)
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">File storage</th>
+                <td>Local disk, S3, or Cloudflare R2 — one setting</td>
+              </tr>
+              <tr>
+                <th scope="row">Health check</th>
+                <td>
+                  <code>GET /api/health</code>, unauthenticated, reports database
+                  reachability
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Migrating in</th>
+                <td>An importer for Zammad, safe to run more than once</td>
+              </tr>
+              <tr>
+                <th scope="row">Licence</th>
+                <td>MIT</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h2>Have a look at the code</h2>
+          <p class="section-lede">
+            Docket is the second of 256. The README covers backups, the public
+            API, deploying elsewhere, and everything else in detail.
+          </p>
+          <div class="hero-actions">
+            <a
+              class="btn btn--primary"
+              href="https://github.com/Stack256org/docket"
+              >Source on GitHub &rarr;</a
+            >
+            <a
+              class="btn"
+              href="https://github.com/stack256org/docket/pkgs/container/docket"
+              >The container image</a
+            >
+            <a class="btn" href="/paco/">Paco, the other one &rarr;</a>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <a href="/">Stack256</a>
+        <a href="https://github.com/Stack256org/docket">GitHub</a>
+        <a href="https://apt.stack256.org">Packages</a>
+        <span class="spacer">Open source, and self-hosted, all the way down.</span>
+      </footer>
+    </div>
+  </body>
+</html>
