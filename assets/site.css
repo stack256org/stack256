@@ -340,13 +340,13 @@ h1 .accent {
 }
 
 /*
- * Width is 2/256 — a real number, not a flattering one. It is meant to look
+ * Width is 3/256 — a real number, not a flattering one. It is meant to look
  * like the beginning of something rather than a nearly-finished progress bar.
  */
 .track span {
   display: block;
   height: 100%;
-  width: 0.78%;
+  width: 1.17%;
   min-width: 4px;
   border-radius: 999px;
   background: var(--brand);

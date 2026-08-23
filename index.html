@@ -40,6 +40,7 @@
           <nav class="header-links">
             <a href="/paco/">Paco</a>
             <a href="/docket/">Docket</a>
+            <a href="/openfx/">OpenFX</a>
             <a href="https://apt.stack256.org">Packages</a>
             <a href="https://github.com/Stack256org">GitHub</a>
           </nav>
@@ -61,8 +62,8 @@
           </p>
 
           <div class="counter">
-            <span class="n">2</span>
-            <span class="of">shipped &middot; 254 to go</span>
+            <span class="n">3</span>
+            <span class="of">shipped &middot; 253 to go</span>
             <span class="track"><span></span></span>
           </div>
         </div>
@@ -100,8 +101,8 @@
         <section>
           <h2>Shipping now</h2>
           <p class="section-lede">
-            Both are installable today, and both run entirely on your own
-            hardware.
+            All three are installable today, and all three run entirely on your
+            own hardware.
           </p>
           <div class="products">
             <a class="card" href="/paco/">
@@ -142,13 +143,28 @@
               <p class="go">Read more &rarr;</p>
             </a>
 
-            <div class="card card--ghost">
+            <a class="card" href="/openfx/">
+              <img class="card-mark" src="/assets/openfx-mark.svg" alt="" width="64" height="64" />
               <div class="card-top">
-                <h3>Next</h3>
+                <h3>OpenFX</h3>
                 <span class="idx">003</span>
               </div>
               <p>
-                254 to go. Each one replaces something you currently rent, and
+                A coding agent that runs where the code does. An interactive
+                terminal, an agent that reads and edits the checkout in front of
+                it, and a permissions engine that asks before it acts.
+              </p>
+              <p class="meta">Debian package &middot; <code>apt install openfx</code></p>
+              <p class="go">Read more &rarr;</p>
+            </a>
+
+            <div class="card card--ghost">
+              <div class="card-top">
+                <h3>Next</h3>
+                <span class="idx">004</span>
+              </div>
+              <p>
+                253 to go. Each one replaces something you currently rent, and
                 each one ships the same way: open, installable, and yours.
               </p>
               <p class="meta">
@@ -181,7 +197,7 @@ echo "deb [signed-by=/etc/apt/keyrings/stack256-archive-keyring.gpg] \
 https://apt.stack256.org stable main" \
   | sudo tee /etc/apt/sources.list.d/stack256.list
 
-sudo apt update &amp;&amp; sudo apt install paco</code></pre>
+sudo apt update &amp;&amp; sudo apt install paco openfx</code></pre>
 
           <h3 class="sub">Container images</h3>
           <p class="sub-lede">
