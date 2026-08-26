@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Shapio">
+  <!--
+    A speech bubble with a checkmark: feedback collected, vote registered.
+    The bubble tail points to the lower-left "sender". At card size only the
+    rounded shape is visible; the check reads at hero size.
+  -->
+  <path d="M22 16 H42 C45 16 48 18 48 21 V37 C48 40 45 42 42 42 H32 L24 50 C22 49 20 47 20 45 V18 C20 17 21 16 22 16 Z" fill="#be123c"/>
+  <path d="M29 24 L34 29 L40 21" stroke="#ffe4e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>

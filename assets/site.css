@@ -2,8 +2,9 @@
  * Stack256 — one stylesheet for the whole site.
  *
  * Extracted from the inline <style> the home page used to carry, because there
- * are now three pages (/, /paco, /docket) and a fourth is only ever one product
- * away. Three copies of a design system drift within a week; one file cannot.
+ * are now seven pages (/, /paco, /docket, /openfx, /kanbanica, /scheduled,
+ * /shapio) and a eighth is only ever one product away. Three copies of a
+ * design system drift within a week; one file cannot.
  *
  * Per-product colour is the single axis of variation. A product page sets
  * --brand (and --brand-rgb, which the hero wash needs as bare channels) on
@@ -340,13 +341,13 @@ h1 .accent {
 }
 
 /*
- * Width is 3/256 — a real number, not a flattering one. It is meant to look
+ * Width is 6/256 — a real number, not a flattering one. It is meant to look
  * like the beginning of something rather than a nearly-finished progress bar.
  */
 .track span {
   display: block;
   height: 100%;
-  width: 1.17%;
+  width: 2.34%;
   min-width: 4px;
   border-radius: 999px;
   background: var(--brand);

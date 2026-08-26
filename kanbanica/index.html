@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kanbanica — project management you host yourself · Stack256</title>
+    <meta
+      name="description"
+      content="A self-hostable, ClickUp-style project management app. Workspaces, projects, sprints, and tasks with real-time collaboration. Runs on your own infrastructure, with your own data."
+    />
+    <meta name="theme-color" content="#1c1b1b" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Kanbanica — project management you host yourself" />
+    <meta
+      property="og:description"
+      content="Workspaces, sprints, and tasks in one app you run on your own server. Real-time collaboration, no SaaS vendor in the loop."
+    />
+    <meta property="og:url" content="https://stack256.org/kanbanica/" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/assets/kanbanica-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/assets/site.css" />
+    <style>
+      /*
+       * Kanbanica's accent — the green of a board in motion, taken from the
+       * mark's foreground. Only these three custom properties change; every
+       * rule in site.css that draws an accent reads them.
+       */
+      :root {
+        --brand: #22c55e;
+        --brand-rgb: 34 197 94;
+        --brand-ink: #06331b;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="wrap">
+      <header>
+        <div class="header-row">
+          <a class="logo" href="/" aria-label="Stack256 home">
+            <img src="/assets/stack256-mark.svg" alt="" width="48" height="84" />
+            <div class="wordmark" aria-hidden="true">Stack<br />256</div>
+          </a>
+
+          <nav class="header-links">
+            <a href="/paco/">Paco</a>
+            <a href="/docket/">Docket</a>
+            <a href="/openfx/">OpenFX</a>
+            <a href="/kanbanica/" aria-current="page">Kanbanica</a>
+            <a href="/scheduled/">Schduled</a>
+            <a href="/shapio/">Shapio</a>
+            <a href="https://apt.stack256.org">Packages</a>
+            <a href="https://github.com/Stack256org/kanbanica">GitHub</a>
+          </nav>
+        </div>
+      </header>
+
+      <main id="main">
+        <div class="hero">
+          <img
+            class="product-mark"
+            src="/assets/kanbanica-mark.svg"
+            alt="Kanbanica"
+            width="64"
+            height="64"
+          />
+          <span class="eyebrow"><span class="dot"></span>Stack256 &middot; 004</span>
+          <h1>
+            Project management
+            <span class="accent">on your own infrastructure.</span>
+          </h1>
+          <p class="lede">
+            Kanbanica is a self-hostable, ClickUp-style project management app.
+            Teams organize work in Workspaces, Projects, and Sprints — track it
+            on a board, a list, or a calendar, and collaborate in real time
+            without ever sending your data to a SaaS vendor.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn--primary" href="#install">How to install it</a>
+            <a class="btn" href="https://github.com/Stack256org/kanbanica"
+              >Source on GitHub</a
+            >
+          </div>
+        </div>
+
+        <section>
+          <h2>What makes it different</h2>
+          <p class="section-lede">
+            Most of these follow from one decision: it is a real application
+            you run on your own server, not a service someone else hosts.
+          </p>
+          <ul class="principles">
+            <li>
+              <h3>Real-time sync, no refresh</h3>
+              <p>
+                Updates flow to every open client over Server-Sent Events as
+                teammates move tasks, comment, or change status — no reload and
+                no polling loop burning CPU.
+              </p>
+            </li>
+            <li>
+              <h3>Workspaces &middot; Projects &middot; Sprints</h3>
+              <p>
+                A flexible hierarchy lets you organize any team's work, viewed
+                as a board, a list, or a calendar. Sprints plan work into
+                time-boxed cycles with story points and automatic close.
+              </p>
+            </li>
+            <li>
+              <h3>Two-level permissions</h3>
+              <p>
+                Workspace roles control membership and billing; per-project
+                access scopes guests to only the projects they are invited to.
+                No flat "admin" or "user" — the granularity matches how teams
+                actually work.
+              </p>
+            </li>
+            <li>
+              <h3>Your auth, your way</h3>
+              <p>
+                Magic link, Google OAuth, or email and password — all
+                converging on one account per email address. Auth is not a
+                product decision you have to bolt on later.
+              </p>
+            </li>
+            <li>
+              <h3>Everything configurable from the UI</h3>
+              <p>
+                SMTP, Google OAuth, S3/R2 storage, and Web Push are all set
+                from Settings &rarr; Integrations — no <code>.env</code> edit
+                or restart required (except Google OAuth, which is read at
+                process start).
+              </p>
+            </li>
+            <li>
+              <h3>Your files, your storage</h3>
+              <p>
+                Local disk in development; S3 or Cloudflare R2 in production,
+                one setting. Your uploads never leave the storage you chose.
+              </p>
+            </li>
+          </ul>
+        </section>
+
+        <section id="install">
+          <h2>Installing it</h2>
+          <p class="section-lede">
+            You need Docker, and nothing else. No Node.js, no PostgreSQL
+            install, no build step — the image is prebuilt and PostgreSQL
+            comes with it.
+          </p>
+
+          <ol class="steps">
+            <li>
+              <h3>Get the two files</h3>
+              <p>A compose file and an environment file. That is the whole setup.</p>
+              <pre><code>curl -O https://raw.githubusercontent.com/stack256org/kanbanica/main/docker-compose.yml
+curl -o .env https://raw.githubusercontent.com/stack256org/kanbanica/main/.env.docker.example</code></pre>
+            </li>
+            <li>
+              <h3>Set three values</h3>
+              <p>
+                <code>APP_SECRET</code> (32+ random characters, from
+                <code>openssl rand -hex 32</code>), <code>APP_URL</code>, and
+                <code>DATABASE_URL</code>. Everything else has a working
+                default.
+              </p>
+            </li>
+            <li>
+              <h3>Start it</h3>
+              <p>
+                This pulls the image, starts PostgreSQL, prepares the
+                database, and leaves the app and its worker running.
+              </p>
+              <pre><code>docker compose up -d</code></pre>
+            </li>
+            <li>
+              <h3>Make your own login</h3>
+              <p>
+                A separate, deliberate step, so you see whether it worked
+                rather than it failing quietly inside a background service.
+              </p>
+              <pre><code>docker compose run --rm app \
+  pnpm create:admin you@example.com "Your Name" "a-strong-password"</code></pre>
+            </li>
+          </ol>
+
+          <p class="note">
+            <strong>Already have a PostgreSQL?</strong> Point
+            <code>DATABASE_URL</code> at it and add the
+            <code>.external-db</code> overlay — the bundled database container
+            is never started, and migrations still run automatically before
+            the app boots.
+          </p>
+        </section>
+
+        <section>
+          <h2>What it needs</h2>
+          <table class="spec">
+            <tbody>
+              <tr>
+                <th scope="row">Host</th>
+                <td>
+                  Anything that runs containers &mdash; Compose, Coolify,
+                  Dokploy, Portainer, Kubernetes, Swarm, ECS
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Image</th>
+                <td><code>ghcr.io/stack256org/kanbanica</code></td>
+              </tr>
+              <tr>
+                <th scope="row">Architectures</th>
+                <td><code>amd64</code> and <code>arm64</code>, in every tag</td>
+              </tr>
+              <tr>
+                <th scope="row">Processes</th>
+                <td>
+                  The app, a worker (background jobs and email), and a
+                  one-off migrate step
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Database</th>
+                <td>
+                  PostgreSQL 16+ &mdash; bundled, or point it at your own
+                  (Neon, Supabase, RDS)
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">File storage</th>
+                <td>Local disk, S3, or Cloudflare R2 &mdash; one setting</td>
+              </tr>
+              <tr>
+                <th scope="row">Health check</th>
+                <td>
+                  <code>GET /api/health</code>, unauthenticated, reports
+                  database reachability
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Licence</th>
+                <td>MIT</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h2>Have a look at the code</h2>
+          <p class="section-lede">
+            Kanbanica is the fourth of 256. The README covers backups, the
+            public API, deploying elsewhere, and everything else in detail.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn--primary" href="https://github.com/Stack256org/kanbanica"
+              >Source on GitHub &rarr;</a
+            >
+            <a
+              class="btn"
+              href="https://github.com/stack256org/kanbanica/pkgs/container/kanbanica"
+              >The container image</a
+            >
+            <a class="btn" href="/docket/">Docket, the other one &rarr;</a>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <a href="/">Stack256</a>
+        <a href="https://github.com/Stack256org/kanbanica">GitHub</a>
+        <a href="https://apt.stack256.org">Packages</a>
+        <span class="spacer">Open source, and self-hosted, all the way down.</span>
+      </footer>
+    </div>
+  </body>
+</html>

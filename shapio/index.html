@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shapio — user feedback you host yourself · Stack256</title>
+    <meta
+      name="description"
+      content="An open-source user feedback and feature voting platform. Collect ideas, let users vote, track a public roadmap, and publish a changelog — all under your own domain."
+    />
+    <meta name="theme-color" content="#1c1b1b" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Shapio — user feedback you host yourself" />
+    <meta
+      property="og:description"
+      content="Collect product feedback, let users vote on feature requests, and track a public roadmap — all under your own domain."
+    />
+    <meta property="og:url" content="https://stack256.org/shapio/" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/assets/shapio-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/assets/site.css" />
+    <style>
+      /*
+       * Shapio's accent — the rose of the mark's checkmark, sampled from
+       * its own mark rather than chosen to match. Only these three custom
+       * properties change; every rule in site.css that draws an accent reads
+       * them.
+       */
+      :root {
+        --brand: #f43f5e;
+        --brand-rgb: 244 63 94;
+        --brand-ink: #310627;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="wrap">
+      <header>
+        <div class="header-row">
+          <a class="logo" href="/" aria-label="Stack256 home">
+            <img src="/assets/stack256-mark.svg" alt="" width="48" height="84" />
+            <div class="wordmark" aria-hidden="true">Stack<br />256</div>
+          </a>
+
+          <nav class="header-links">
+            <a href="/paco/">Paco</a>
+            <a href="/docket/">Docket</a>
+            <a href="/openfx/">OpenFX</a>
+            <a href="/kanbanica/">Kanbanica</a>
+            <a href="/scheduled/">Schduled</a>
+            <a href="/shapio/" aria-current="page">Shapio</a>
+            <a href="https://apt.stack256.org">Packages</a>
+            <a href="https://github.com/Stack256org/shapio">GitHub</a>
+          </nav>
+        </div>
+      </header>
+
+      <main id="main">
+        <div class="hero">
+          <img
+            class="product-mark"
+            src="/assets/shapio-mark.svg"
+            alt="Shapio"
+            width="64"
+            height="64"
+          />
+          <span class="eyebrow"><span class="dot"></span>Stack256 &middot; 006</span>
+          <h1>
+            Collect feedback
+            <span class="accent">under your own domain.</span>
+          </h1>
+          <p class="lede">
+            Shapio is an open-source feedback and feature-voting platform. Teams
+            collect product feedback, let users vote on feature requests, track
+            work on a public roadmap, and publish a changelog &mdash; all under
+            their own domain, with nothing leaving your server.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn--primary" href="#install">How to install it</a>
+            <a class="btn" href="https://github.com/Stack256org/shapio"
+              >Source on GitHub</a
+            >
+          </div>
+        </div>
+
+        <section>
+          <h2>What makes it different</h2>
+          <p class="section-lede">
+            Most of these follow from one decision: it is a real application
+            you run on your own server, not a service someone else hosts.
+          </p>
+          <ul class="principles">
+            <li>
+              <h3>Two-host, isolated sessions</h3>
+              <p>
+                The Workspace/Admin app and the Public Portal can run as
+                independent applications with isolated sessions &mdash; signing
+                into one never authenticates the other. Or run as one, on a
+                single origin, with no extra configuration.
+              </p>
+            </li>
+            <li>
+              <h3>Zero email loss</h3>
+              <p>
+                Email is never sent inline. Every message is written to a
+                durable outbox first, then enqueued &mdash; and a reaping cron
+                re-queues anything stuck if the worker dies between the two
+                steps. Your mail arrives, or you find out why.
+              </p>
+            </li>
+            <li>
+              <h3>Your secrets stay yours</h3>
+              <p>
+                SMTP credentials, OAuth tokens, and file-storage keys are
+                encrypted at rest and never sent back to the browser after
+                saving. Configuration can be set from the UI or as a fallback
+                in <code>.env</code>.
+              </p>
+            </li>
+            <li>
+              <h3>Your storage, your way</h3>
+              <p>
+                Local disk in development; S3 or Cloudflare R2 in production,
+                one setting. Your uploads never leave the storage you chose.
+              </p>
+            </li>
+            <li>
+              <h3>An audit trail that fires and forgets</h3>
+              <p>
+                Sign-ins, data exports, and account deletions are logged
+                fire-and-forget &mdash; the trail is never allowed to slow the
+                action it records, and never blocks on a downstream failure.
+              </p>
+            </li>
+            <li>
+              <h3>Health checks that mean something</h3>
+              <p>
+                <code>GET /api/health</code> runs a real query against your
+                database &mdash; not just whether the process is alive. The
+                container&rsquo;s own Docker <code>HEALTHCHECK</code> uses it,
+                so a load balancer or uptime monitor sees the same truth your
+                orchestrator does.
+              </p>
+            </li>
+          </ul>
+        </section>
+
+        <section id="install">
+          <h2>Installing it</h2>
+          <p class="section-lede">
+            You need Docker, and nothing else. No separate Node.js or
+            PostgreSQL install &mdash; the images are prebuilt and PostgreSQL
+            comes with them.
+          </p>
+
+          <ol class="steps">
+            <li>
+              <h3>Get the two files</h3>
+              <p>A compose file and an environment file. That is the whole setup.</p>
+              <pre><code>curl -O https://raw.githubusercontent.com/stack256org/shapio/main/docker-compose.yml
+curl -o .env https://raw.githubusercontent.com/stack256org/shapio/main/.env.docker.example</code></pre>
+            </li>
+            <li>
+              <h3>Set two values</h3>
+              <p>
+                <code>APP_SECRET</code> (32+ random characters, from
+                <code>openssl rand -base64 36</code>) and
+                <code>APP_URL</code>. Everything else has a working default.
+              </p>
+            </li>
+            <li>
+              <h3>Start it</h3>
+              <p>
+                This pulls both images, starts PostgreSQL, applies migrations,
+                and leaves the app and worker running.
+              </p>
+              <pre><code>docker compose up -d</code></pre>
+            </li>
+            <li>
+              <h3>Make your own login</h3>
+              <p>
+                A separate, deliberate step, so you see whether it worked
+                rather than it failing quietly inside a background service.
+              </p>
+              <pre><code>pnpm make:admin you@example.com</code></pre>
+            </li>
+          </ol>
+
+          <p class="note">
+            <strong>You need two images.</strong> The app
+            (<code>ghcr.io/stack256org/shapio</code>) serves traffic, and the
+            worker (<code>ghcr.io/stack256org/shapio-worker</code>) sends
+            email and runs background jobs &mdash; nothing sends without it.
+            The compose file starts both for you.
+          </p>
+        </section>
+
+        <section>
+          <h2>What it needs</h2>
+          <table class="spec">
+            <tbody>
+              <tr>
+                <th scope="row">Host</th>
+                <td>
+                  Anything that runs containers &mdash; Compose, Coolify,
+                  Dokploy, Portainer, Kubernetes, Swarm, ECS
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Images</th>
+                <td>
+                  <code>ghcr.io/stack256org/shapio</code> and
+                  <code>ghcr.io/stack256org/shapio-worker</code>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Architectures</th>
+                <td><code>amd64</code> and <code>arm64</code>, in every tag</td>
+              </tr>
+              <tr>
+                <th scope="row">Processes</th>
+                <td>
+                  The app, a worker (background jobs and email), and a
+                  one-off migrate step
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Database</th>
+                <td>
+                  PostgreSQL 16+ &mdash; bundled, or point it at your own
+                  (Neon, Supabase, RDS)
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">File storage</th>
+                <td>Local disk, S3, or Cloudflare R2 &mdash; one setting</td>
+              </tr>
+              <tr>
+                <th scope="row">Health check</th>
+                <td>
+                  <code>GET /api/health</code>, unauthenticated, reports
+                  database reachability
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Licence</th>
+                <td>MIT</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h2>Have a look at the code</h2>
+          <p class="section-lede">
+            Shapio is the sixth of 256. The README covers the full product
+            specification, self-hosting, and everything else in detail.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn--primary" href="https://github.com/Stack256org/shapio"
+              >Source on GitHub &rarr;</a
+            >
+            <a
+              class="btn"
+              href="https://github.com/stack256org/shapio/pkgs/container/shapio"
+              >The container image</a
+            >
+            <a class="btn" href="/kanbanica/">Kanbanica, the other one &rarr;</a>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <a href="/">Stack256</a>
+        <a href="https://github.com/Stack256org/shapio">GitHub</a>
+        <a href="https://apt.stack256.org">Packages</a>
+        <span class="spacer">Open source, and self-hosted, all the way down.</span>
+      </footer>
+    </div>
+  </body>
+</html>

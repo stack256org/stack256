@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Schduled — scheduling you host yourself · Stack256</title>
+    <meta
+      name="description"
+      content="A smart scheduling platform you host yourself. Share a booking link, set your availability, and let invitees pick a time — no back-and-forth. Runs on your own server, on your own database."
+    />
+    <meta name="theme-color" content="#1c1b1b" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Schduled — scheduling you host yourself" />
+    <meta
+      property="og:description"
+      content="Share a booking link, set your availability, and let invitees pick a time. Runs on your own server, on your own database."
+    />
+    <meta property="og:url" content="https://stack256.org/scheduled/" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/assets/scheduled-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/assets/site.css" />
+    <style>
+      /*
+       * Schduled's accent — the violet of the calendar mark, sampled from
+       * its own mark rather than chosen to match. Only these three custom
+       * properties change; every rule in site.css that draws an accent reads
+       * them.
+       */
+      :root {
+        --brand: #a855f7;
+        --brand-rgb: 168 85 247;
+        --brand-ink: #2a0d4a;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="wrap">
+      <header>
+        <div class="header-row">
+          <a class="logo" href="/" aria-label="Stack256 home">
+            <img src="/assets/stack256-mark.svg" alt="" width="48" height="84" />
+            <div class="wordmark" aria-hidden="true">Stack<br />256</div>
+          </a>
+
+          <nav class="header-links">
+            <a href="/paco/">Paco</a>
+            <a href="/docket/">Docket</a>
+            <a href="/openfx/">OpenFX</a>
+            <a href="/kanbanica/">Kanbanica</a>
+            <a href="/scheduled/" aria-current="page">Schduled</a>
+            <a href="/shapio/">Shapio</a>
+            <a href="https://apt.stack256.org">Packages</a>
+            <a href="https://github.com/Stack256org/scheduled">GitHub</a>
+          </nav>
+        </div>
+      </header>
+
+      <main id="main">
+        <div class="hero">
+          <img
+            class="product-mark"
+            src="/assets/scheduled-mark.svg"
+            alt="Schduled"
+            width="64"
+            height="64"
+          />
+          <span class="eyebrow"><span class="dot"></span>Stack256 &middot; 005</span>
+          <h1>
+            Scheduling and bookings
+            <span class="accent">on your own server.</span>
+          </h1>
+          <p class="lede">
+            Share a booking link, set your availability, and let invitees pick a
+            time &mdash; no back-and-forth email. Runs on your own server, on
+            your own database, with nothing phoning home.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn--primary" href="#install">How to install it</a>
+            <a class="btn" href="https://github.com/Stack256org/scheduled"
+              >Source on GitHub</a
+            >
+          </div>
+        </div>
+
+        <section>
+          <h2>What makes it different</h2>
+          <p class="section-lede">
+            Most of these follow from one decision: it is a real application
+            you run on your own server, not a service someone else hosts.
+          </p>
+          <ul class="principles">
+            <li>
+              <h3>No account to make</h3>
+              <p>
+                Invitees pick a time with a name and an email &mdash; no
+                password, no registration wall. The link takes them back to
+                read confirmations and updates.
+              </p>
+            </li>
+            <li>
+              <h3>Email that keeps trying</h3>
+              <p>
+                Outgoing mail is queued and retried rather than quietly
+                dropped when your provider has a bad day. No-show reminders
+                and confirmations are durable, not best-effort.
+              </p>
+            </li>
+            <li>
+              <h3>Health checks that mean something</h3>
+              <p>
+                <code>GET /api/health</code> runs a real query against your
+                database &mdash; not just whether the process is alive. The
+                container&rsquo;s own Docker <code>HEALTHCHECK</code> uses it,
+                so a load balancer or uptime monitor sees the same truth
+                your orchestrator does.
+              </p>
+            </li>
+            <li>
+              <h3>Admin screens where you work</h3>
+              <p>
+                User management, queue state, and platform settings live
+                under <code>/settings/*</code> inside the dashboard, gated by
+                role. No separate admin panel, no second login.
+              </p>
+            </li>
+            <li>
+              <h3>Config that refuses to start broken</h3>
+              <p>
+                Every variable is validated at boot. A missing or invalid
+                required value makes the app refuse to start and print exactly
+                which one failed &mdash; rather than breaking halfway through
+                a request.
+              </p>
+            </li>
+            <li>
+              <h3>Your storage, your way</h3>
+              <p>
+                Local disk in development; S3 or Cloudflare R2 in production,
+                one setting. Your data stays where you put it.
+              </p>
+            </li>
+          </ul>
+        </section>
+
+        <section id="install">
+          <h2>Installing it</h2>
+          <p class="section-lede">
+            You need Docker, and nothing else. No separate Node.js or
+            PostgreSQL install &mdash; the images are prebuilt and PostgreSQL
+            comes with them.
+          </p>
+
+          <ol class="steps">
+            <li>
+              <h3>Get the two files</h3>
+              <p>A compose file and an environment file. That is the whole setup.</p>
+              <pre><code>curl -O https://raw.githubusercontent.com/stack256org/scheduled/main/docker-compose.yml
+curl -o .env https://raw.githubusercontent.com/stack256org/scheduled/main/.env.docker.example</code></pre>
+            </li>
+            <li>
+              <h3>Set three values</h3>
+              <p>
+                <code>APP_SECRET</code> (32+ random characters, from
+                <code>openssl rand -hex 32</code>), <code>APP_URL</code>, and
+                <code>DATABASE_URL</code>. Everything else has a working
+                default.
+              </p>
+            </li>
+            <li>
+              <h3>Start it</h3>
+              <p>
+                This pulls both images, starts PostgreSQL, migrates the
+                database, and leaves the app and worker running.
+              </p>
+              <pre><code>docker compose up -d</code></pre>
+            </li>
+            <li>
+              <h3>Open it</h3>
+              <p>
+                First run walks you through creating the admin account. No
+                separate terminal step needed.
+              </p>
+              <pre><code>http://&lt;this host&rsquo;s address&gt;/</code></pre>
+            </li>
+          </ol>
+
+          <p class="note">
+            <strong>You need two images.</strong> The app
+            (<code>ghcr.io/stack256org/schduled</code>) serves traffic, and the
+            worker (<code>ghcr.io/stack256org/schduled-worker</code>) sends
+            email and runs background jobs &mdash; nothing sends without it.
+            The compose file starts both for you.
+          </p>
+        </section>
+
+        <section>
+          <h2>What it needs</h2>
+          <table class="spec">
+            <tbody>
+              <tr>
+                <th scope="row">Host</th>
+                <td>
+                  Anything that runs containers &mdash; Compose, Coolify,
+                  Dokploy, Portainer, Kubernetes, Swarm, ECS
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Images</th>
+                <td>
+                  <code>ghcr.io/stack256org/schduled</code> and
+                  <code>ghcr.io/stack256org/schduled-worker</code>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Architectures</th>
+                <td><code>amd64</code> and <code>arm64</code>, in every tag</td>
+              </tr>
+              <tr>
+                <th scope="row">Processes</th>
+                <td>
+                  The app, a worker (email and background jobs), and a
+                  one-off migrate step
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Database</th>
+                <td>
+                  PostgreSQL 16+ &mdash; bundled, or point it at your own
+                  (Neon, Supabase, RDS)
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">File storage</th>
+                <td>Local disk, S3, or Cloudflare R2 &mdash; one setting</td>
+              </tr>
+              <tr>
+                <th scope="row">Health check</th>
+                <td>
+                  <code>GET /api/health</code>, unauthenticated, reports
+                  database reachability
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Licence</th>
+                <td>MIT</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h2>Have a look at the code</h2>
+          <p class="section-lede">
+            Schduled is the fifth of 256. The README covers full production
+            setup, HTTPS, backups, and everything else in detail.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn--primary" href="https://github.com/Stack256org/scheduled"
+              >Source on GitHub &rarr;</a
+            >
+            <a
+              class="btn"
+              href="https://github.com/stack256org/scheduled/pkgs/container/schduled"
+              >The container image</a
+            >
+            <a class="btn" href="/shapio/">Shapio, the other one &rarr;</a>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <a href="/">Stack256</a>
+        <a href="https://github.com/Stack256org/scheduled">GitHub</a>
+        <a href="https://apt.stack256.org">Packages</a>
+        <span class="spacer">Open source, and self-hosted, all the way down.</span>
+      </footer>
+    </div>
+  </body>
+</html>

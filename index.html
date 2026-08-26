@@ -21,8 +21,8 @@
     <meta name="twitter:card" content="summary_large_image" />
 
     <!-- The real mark, as a file rather than a hand-copied inline path: the
-         home page and both product pages use it, and three transcriptions of
-         the same geometry is three chances to get it wrong. -->
+         home page and every product page uses it, and seven transcriptions of
+         the same geometry is seven chances to get it wrong. -->
     <link rel="icon" href="/assets/stack256-mark.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/assets/site.css" />
   </head>
@@ -41,6 +41,9 @@
             <a href="/paco/">Paco</a>
             <a href="/docket/">Docket</a>
             <a href="/openfx/">OpenFX</a>
+            <a href="/kanbanica/">Kanbanica</a>
+            <a href="/scheduled/">Schduled</a>
+            <a href="/shapio/">Shapio</a>
             <a href="https://apt.stack256.org">Packages</a>
             <a href="https://github.com/Stack256org">GitHub</a>
           </nav>
@@ -62,8 +65,8 @@
           </p>
 
           <div class="counter">
-            <span class="n">3</span>
-            <span class="of">shipped &middot; 253 to go</span>
+            <span class="n">6</span>
+            <span class="of">shipped &middot; 250 to go</span>
             <span class="track"><span></span></span>
           </div>
         </div>
@@ -101,7 +104,7 @@
         <section>
           <h2>Shipping now</h2>
           <p class="section-lede">
-            All three are installable today, and all three run entirely on your
+            All six are installable today, and all six run entirely on your
             own hardware.
           </p>
           <div class="products">
@@ -158,13 +161,63 @@
               <p class="go">Read more &rarr;</p>
             </a>
 
-            <div class="card card--ghost">
+            <a class="card" href="/kanbanica/">
+              <img class="card-mark" src="/assets/kanbanica-mark.svg" alt="" width="64" height="64" />
               <div class="card-top">
-                <h3>Next</h3>
+                <h3>Kanbanica</h3>
                 <span class="idx">004</span>
               </div>
               <p>
-                253 to go. Each one replaces something you currently rent, and
+                Project management you host yourself. Workspaces, sprints, and
+                tasks with real-time collaboration &mdash; no SaaS in the loop.
+              </p>
+              <p class="meta">
+                Container image &middot; <code>ghcr.io/stack256org/kanbanica</code>
+              </p>
+              <p class="go">Read more &rarr;</p>
+            </a>
+
+            <a class="card" href="/scheduled/">
+              <img class="card-mark" src="/assets/scheduled-mark.svg" alt="" width="64" height="64" />
+              <div class="card-top">
+                <h3>Schduled</h3>
+                <span class="idx">005</span>
+              </div>
+              <p>
+                Scheduling and bookings you host yourself. Share a link, set
+                your availability, and let invitees pick a time &mdash; on your
+                own server.
+              </p>
+              <p class="meta">
+                Container image &middot; <code>ghcr.io/stack256org/schduled</code>
+              </p>
+              <p class="go">Read more &rarr;</p>
+            </a>
+
+            <a class="card" href="/shapio/">
+              <img class="card-mark" src="/assets/shapio-mark.svg" alt="" width="64" height="64" />
+              <div class="card-top">
+                <h3>Shapio</h3>
+                <span class="idx">006</span>
+              </div>
+              <p>
+                A feedback and feature-voting board you host yourself. Collect
+                ideas, let users vote, and track a public roadmap &mdash; under
+                your own domain.
+              </p>
+              <p class="meta">
+                Container image &middot; <code>ghcr.io/stack256org/shapio</code>
+              </p>
+              <p class="go">Read more &rarr;</p>
+            </a>
+
+            <div class="card card--ghost">
+              <div class="card-top">
+                <h3>Next</h3>
+                <span class="idx">007</span>
+              </div>
+              <p>
+                250 to go. Each one replaces something you currently rent, and
                 each one ships the same way: open, installable, and yours.
               </p>
               <p class="meta">
@@ -205,7 +258,9 @@ sudo apt update &amp;&amp; sudo apt install paco openfx</code></pre>
             Docker Compose, Coolify, Dokploy, Kubernetes. Each repository
             documents its own compose file.
           </p>
-          <pre><code>docker pull ghcr.io/stack256org/docket</code></pre>
+          <pre><code>docker pull ghcr.io/stack256org/kanbanica
+docker pull ghcr.io/stack256org/schduled
+docker pull ghcr.io/stack256org/shapio</code></pre>
         </section>
 
         <section>
