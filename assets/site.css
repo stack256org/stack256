@@ -423,7 +423,7 @@ h2 {
   height: 1.1rem;
   margin-right: 0.55rem;
   vertical-align: 0.28em;
-  color: var(--muted);
+  color: var(--text);
   flex: none;
   overflow: visible;
 }
