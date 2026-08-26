@@ -1,13 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Schduled">
-  <!--
-    A calendar: rounded rectangle with two binding tabs at top, and a small
-    clock face inside. The clock is only visible at hero size, but the tab
-    shape is enough to read as a calendar at card size.
-  -->
-  <rect x="8" y="16" width="48" height="40" rx="6" fill="#5b21b6"/>
-  <rect x="14" y="8" width="8" height="10" rx="2" fill="#8b5cf6"/>
-  <rect x="42" y="8" width="8" height="10" rx="2" fill="#8b5cf6"/>
-  <circle cx="32" cy="34" r="7" fill="#ede9fe"/>
-  <path d="M32 29 V34" stroke="#5b21b6" stroke-width="1.5" stroke-linecap="round"/>
-  <path d="M32 34 H37" stroke="#5b21b6" stroke-width="1.5" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-label="Schduled">
+  <rect x="5" y="8" width="14" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+  <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <line x1="9" y1="5" x2="9" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <line x1="15" y1="5" x2="15" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
 </svg>

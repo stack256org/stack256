@@ -49,7 +49,6 @@
           <nav class="header-links">
             <a href="/paco/">Paco</a>
             <a href="/docket/">Docket</a>
-            <a href="/openfx/">OpenFX</a>
             <a href="/kanbanica/">Kanbanica</a>
             <a href="/scheduled/" aria-current="page">Schduled</a>
             <a href="/shapio/">Shapio</a>
@@ -65,10 +64,10 @@
             class="product-mark"
             src="/assets/scheduled-mark.svg"
             alt="Schduled"
-            width="64"
-            height="64"
+            width="24"
+            height="24"
           />
-          <span class="eyebrow"><span class="dot"></span>Stack256 &middot; 005</span>
+          <span class="eyebrow"><span class="dot"></span>Stack256 &middot; 004</span>
           <h1>
             Scheduling and bookings
             <span class="accent">on your own server.</span>
@@ -95,7 +94,7 @@
           </p>
           <ul class="principles">
             <li>
-              <h3>No account to make</h3>
+              <h3><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="7" r="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="17" y1="7" x2="21" y2="11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="21" y1="7" x2="17" y2="11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>No account to make</h3>
               <p>
                 Invitees pick a time with a name and an email &mdash; no
                 password, no registration wall. The link takes them back to
@@ -103,7 +102,7 @@
               </p>
             </li>
             <li>
-              <h3>Email that keeps trying</h3>
+              <h3><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="6" width="16" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 8l8 6 8-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Email that keeps trying</h3>
               <p>
                 Outgoing mail is queued and retried rather than quietly
                 dropped when your provider has a bad day. No-show reminders
@@ -111,7 +110,7 @@
               </p>
             </li>
             <li>
-              <h3>Health checks that mean something</h3>
+              <h3><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-4.35-6-10A6 6 0 0112 5a6 6 0 016 10s-6 10-6 10z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Health checks that mean something</h3>
               <p>
                 <code>GET /api/health</code> runs a real query against your
                 database &mdash; not just whether the process is alive. The
@@ -121,7 +120,7 @@
               </p>
             </li>
             <li>
-              <h3>Admin screens where you work</h3>
+              <h3><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12" y1="7" x2="12" y2="5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="19" x2="12" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="7" y1="12" x2="5" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="19" y1="12" x2="17" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Admin screens where you work</h3>
               <p>
                 User management, queue state, and platform settings live
                 under <code>/settings/*</code> inside the dashboard, gated by
@@ -129,7 +128,7 @@
               </p>
             </li>
             <li>
-              <h3>Config that refuses to start broken</h3>
+              <h3><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.83L2.7 19a2 2 0 001.6 3h15.4a2 2 0 001.6-3L13.71 3.83a2 2 0 00-3.42 0z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><line x1="12" y1="9" x2="12" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="16" r="1" fill="currentColor"/></svg>Config that refuses to start broken</h3>
               <p>
                 Every variable is validated at boot. A missing or invalid
                 required value makes the app refuse to start and print exactly
@@ -138,7 +137,7 @@
               </p>
             </li>
             <li>
-              <h3>Your storage, your way</h3>
+              <h3><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 13a4 4 0 00-7-2 2 2 0 00-4 0 4 4 0 00-4 4v2a2 2 0 002 2h12a3 3 0 003-3 3 3 0 00-3-3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Your storage, your way</h3>
               <p>
                 Local disk in development; S3 or Cloudflare R2 in production,
                 one setting. Your data stays where you put it.
@@ -256,7 +255,7 @@ curl -o .env https://raw.githubusercontent.com/stack256org/scheduled/main/.env.d
         <section>
           <h2>Have a look at the code</h2>
           <p class="section-lede">
-            Schduled is the fifth of 256. The README covers full production
+            Schduled is the fourth of 256. The README covers full production
             setup, HTTPS, backups, and everything else in detail.
           </p>
           <div class="hero-actions">

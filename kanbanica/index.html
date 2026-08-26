@@ -48,7 +48,6 @@
           <nav class="header-links">
             <a href="/paco/">Paco</a>
             <a href="/docket/">Docket</a>
-            <a href="/openfx/">OpenFX</a>
             <a href="/kanbanica/" aria-current="page">Kanbanica</a>
             <a href="/scheduled/">Schduled</a>
             <a href="/shapio/">Shapio</a>
@@ -64,10 +63,10 @@
             class="product-mark"
             src="/assets/kanbanica-mark.svg"
             alt="Kanbanica"
-            width="64"
-            height="64"
+            width="24"
+            height="24"
           />
-          <span class="eyebrow"><span class="dot"></span>Stack256 &middot; 004</span>
+          <span class="eyebrow"><span class="dot"></span>Stack256 &middot; 003</span>
           <h1>
             Project management
             <span class="accent">on your own infrastructure.</span>
@@ -95,7 +94,7 @@
           </p>
           <ul class="principles">
             <li>
-              <h3>Real-time sync, no refresh</h3>
+              <h3><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 019-9 9 9 0 019 9 9 9 0 01-9 9 9 9 0 01-9-9z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l2 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Real-time sync, no refresh</h3>
               <p>
                 Updates flow to every open client over Server-Sent Events as
                 teammates move tasks, comment, or change status — no reload and
@@ -103,7 +102,7 @@
               </p>
             </li>
             <li>
-              <h3>Workspaces &middot; Projects &middot; Sprints</h3>
+              <h3><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><line x1="10" y1="5" x2="10" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="16" y1="5" x2="16" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Workspaces &middot; Projects &middot; Sprints</h3>
               <p>
                 A flexible hierarchy lets you organize any team's work, viewed
                 as a board, a list, or a calendar. Sprints plan work into
@@ -111,7 +110,7 @@
               </p>
             </li>
             <li>
-              <h3>Two-level permissions</h3>
+              <h3><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Two-level permissions</h3>
               <p>
                 Workspace roles control membership and billing; per-project
                 access scopes guests to only the projects they are invited to.
@@ -120,7 +119,7 @@
               </p>
             </li>
             <li>
-              <h3>Your auth, your way</h3>
+              <h3><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12" y1="12" x2="18" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M17 8l-4 4 4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Your auth, your way</h3>
               <p>
                 Magic link, Google OAuth, or email and password — all
                 converging on one account per email address. Auth is not a
@@ -128,7 +127,7 @@
               </p>
             </li>
             <li>
-              <h3>Everything configurable from the UI</h3>
+              <h3><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12" y1="7" x2="12" y2="5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="12" y1="19" x2="12" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="7" y1="12" x2="5" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="19" y1="12" x2="17" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Everything configurable from the UI</h3>
               <p>
                 SMTP, Google OAuth, S3/R2 storage, and Web Push are all set
                 from Settings &rarr; Integrations — no <code>.env</code> edit
@@ -137,7 +136,7 @@
               </p>
             </li>
             <li>
-              <h3>Your files, your storage</h3>
+              <h3><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 13a4 4 0 00-7-2 2 2 0 00-4 0 4 4 0 00-4 4v2a2 2 0 002 2h12a3 3 0 003-3 3 3 0 00-3-3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Your files, your storage</h3>
               <p>
                 Local disk in development; S3 or Cloudflare R2 in production,
                 one setting. Your uploads never leave the storage you chose.
@@ -253,7 +252,7 @@ curl -o .env https://raw.githubusercontent.com/stack256org/kanbanica/main/.env.d
         <section>
           <h2>Have a look at the code</h2>
           <p class="section-lede">
-            Kanbanica is the fourth of 256. The README covers backups, the
+            Kanbanica is the third of 256. The README covers backups, the
             public API, deploying elsewhere, and everything else in detail.
           </p>
           <div class="hero-actions">

@@ -48,7 +48,6 @@
           <nav class="header-links">
             <a href="/paco/" aria-current="page">Paco</a>
             <a href="/docket/">Docket</a>
-            <a href="/openfx/">OpenFX</a>
             <a href="/kanbanica/">Kanbanica</a>
             <a href="/scheduled/">Schduled</a>
             <a href="/shapio/">Shapio</a>
@@ -64,8 +63,8 @@
             class="product-mark"
             src="/assets/paco-mark.svg"
             alt="Paco"
-            width="1748"
-            height="542"
+            width="24"
+            height="24"
           />
           <span class="eyebrow"><span class="dot"></span>Stack256 &middot; 001</span>
           <h1>
@@ -95,7 +94,7 @@
           </p>
           <ul class="principles">
             <li>
-              <h3>Your Claude subscription</h3>
+              <h3><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="1" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 6h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M9 6v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M15 6v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M9 14h6v6H9z" fill="none" stroke="currentColor" stroke-width="2"/></svg>Your Claude subscription</h3>
               <p>
                 The agent is the Claude Code CLI, driven headlessly. It signs in
                 with the subscription you already pay for — there is no API key
@@ -103,7 +102,7 @@
               </p>
             </li>
             <li>
-              <h3>A sandbox per session</h3>
+              <h3><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="7" width="16" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><line x1="4" y1="11" x2="20" y2="11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="9" cy="14" r="1" fill="currentColor"/><circle cx="15" cy="14" r="1" fill="currentColor"/></svg>A sandbox per session</h3>
               <p>
                 Work happens in a Docker container against a workspace directory
                 on the host. Because the workspace is a real directory, state
@@ -111,7 +110,7 @@
               </p>
             </li>
             <li>
-              <h3>Real git, not a diff view</h3>
+              <h3><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="18" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/><line x1="9" y1="12" x2="15" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 15l3-3-3-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Real git, not a diff view</h3>
               <p>
                 A session is a repository; a chat is a worktree on its own
                 <code>chat/&lt;id&gt;</code> branch. Two chats can touch the same
@@ -119,7 +118,7 @@
               </p>
             </li>
             <li>
-              <h3>Destructive actions ask first</h3>
+              <h3><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Destructive actions ask first</h3>
               <p>
                 Reads, in-worktree edits and ordinary dev commands run untouched.
                 <code>rm -rf</code>, force pushes, <code>sudo</code> and writes
@@ -127,7 +126,7 @@
               </p>
             </li>
             <li>
-              <h3>Runs survive restarts</h3>
+              <h3><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 019-9 9 9 0 019 9 9 9 0 01-9 9 9 9 0 01-9-9z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l2 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Runs survive restarts</h3>
               <p>
                 Each step is persisted to Postgres by the durable workflow
                 engine, so a run outlives a reboot and can be resumed or
@@ -135,7 +134,7 @@
               </p>
             </li>
             <li>
-              <h3>Work is tiered across models</h3>
+              <h3><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="1" fill="none" stroke="currentColor" stroke-width="2"/><rect x="9" y="9" width="6" height="6" rx="1" fill="none" stroke="currentColor" stroke-width="2"/></svg>Work is tiered across models</h3>
               <p>
                 An Opus-class model orchestrates while Sonnet and Haiku subagents
                 do the mechanical work — which is where most of the token volume

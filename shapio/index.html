@@ -49,7 +49,6 @@
           <nav class="header-links">
             <a href="/paco/">Paco</a>
             <a href="/docket/">Docket</a>
-            <a href="/openfx/">OpenFX</a>
             <a href="/kanbanica/">Kanbanica</a>
             <a href="/scheduled/">Schduled</a>
             <a href="/shapio/" aria-current="page">Shapio</a>
@@ -65,10 +64,10 @@
             class="product-mark"
             src="/assets/shapio-mark.svg"
             alt="Shapio"
-            width="64"
-            height="64"
+            width="24"
+            height="24"
           />
-          <span class="eyebrow"><span class="dot"></span>Stack256 &middot; 006</span>
+          <span class="eyebrow"><span class="dot"></span>Stack256 &middot; 005</span>
           <h1>
             Collect feedback
             <span class="accent">under your own domain.</span>
@@ -96,7 +95,7 @@
           </p>
           <ul class="principles">
             <li>
-              <h3>Two-host, isolated sessions</h3>
+              <h3><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="6" width="7" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><rect x="13" y="6" width="7" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/></svg>Two-host, isolated sessions</h3>
               <p>
                 The Workspace/Admin app and the Public Portal can run as
                 independent applications with isolated sessions &mdash; signing
@@ -105,7 +104,7 @@
               </p>
             </li>
             <li>
-              <h3>Zero email loss</h3>
+              <h3><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="6" width="16" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 8l8 6 8-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><line x1="12" y1="14" x2="16" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M16 14l-4 4 2 2-2 2h6v-6l-2-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Zero email loss</h3>
               <p>
                 Email is never sent inline. Every message is written to a
                 durable outbox first, then enqueued &mdash; and a reaping cron
@@ -114,7 +113,7 @@
               </p>
             </li>
             <li>
-              <h3>Your secrets stay yours</h3>
+              <h3><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 11V6a4 4 0 018 0v5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Your secrets stay yours</h3>
               <p>
                 SMTP credentials, OAuth tokens, and file-storage keys are
                 encrypted at rest and never sent back to the browser after
@@ -123,14 +122,14 @@
               </p>
             </li>
             <li>
-              <h3>Your storage, your way</h3>
+              <h3><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 13a4 4 0 00-7-2 2 2 0 00-4 0 4 4 0 00-4 4v2a2 2 0 002 2h12a3 3 0 003-3 3 3 0 00-3-3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Your storage, your way</h3>
               <p>
                 Local disk in development; S3 or Cloudflare R2 in production,
                 one setting. Your uploads never leave the storage you chose.
               </p>
             </li>
             <li>
-              <h3>An audit trail that fires and forgets</h3>
+              <h3><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="8" width="14" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><line x1="9" y1="4" x2="15" y2="4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="9" y1="4" x2="9" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="15" y1="4" x2="15" y2="8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="9" y1="12" x2="15" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="9" y1="16" x2="15" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>An audit trail that fires and forgets</h3>
               <p>
                 Sign-ins, data exports, and account deletions are logged
                 fire-and-forget &mdash; the trail is never allowed to slow the
@@ -138,7 +137,7 @@
               </p>
             </li>
             <li>
-              <h3>Health checks that mean something</h3>
+              <h3><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6-4.35-6-10A6 6 0 0112 5a6 6 0 016 10s-6 10-6 10z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Health checks that mean something</h3>
               <p>
                 <code>GET /api/health</code> runs a real query against your
                 database &mdash; not just whether the process is alive. The
@@ -258,7 +257,7 @@ curl -o .env https://raw.githubusercontent.com/stack256org/shapio/main/.env.dock
         <section>
           <h2>Have a look at the code</h2>
           <p class="section-lede">
-            Shapio is the sixth of 256. The README covers the full product
+            Shapio is the fifth of 256. The README covers the full product
             specification, self-hosting, and everything else in detail.
           </p>
           <div class="hero-actions">
@@ -270,7 +269,7 @@ curl -o .env https://raw.githubusercontent.com/stack256org/shapio/main/.env.dock
               href="https://github.com/stack256org/shapio/pkgs/container/shapio"
               >The container image</a
             >
-            <a class="btn" href="/kanbanica/">Kanbanica, the other one &rarr;</a>
+            <a class="btn" href="/scheduled/">Schduled, the other one &rarr;</a>
           </div>
         </section>
       </main>
