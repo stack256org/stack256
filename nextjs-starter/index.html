@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Next.js Starter — a production-ready template to host yourself · Stack256</title>
+    <meta
+      name="description"
+      content="A production-ready Next.js starter template with TypeScript, App Router, Drizzle ORM, pgBoss job queues, and the DaisyUI design system."
+    />
+    <meta name="theme-color" content="#1c1b1b" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Next.js Starter — a template to host yourself" />
+    <meta
+      property="og:description"
+      content="A production-ready Next.js starter with TypeScript, App Router, Drizzle ORM + PostgreSQL, pgBoss job queues, and DaisyUI."
+    />
+    <meta property="og:url" content="https://stack256.org/nextjs-starter/" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/assets/nextjs-starter-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/assets/site.css" />
+    <style>
+      :root {
+        --brand: #0ea5e0;
+        --brand-rgb: 14 165 232;
+        --brand-ink: #0c2a4d;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="wrap">
+      <header>
+        <div class="header-row">
+          <a class="logo" href="/" aria-label="Stack256 home">
+            <img src="/assets/stack256-mark.svg" alt="" width="44" height="80" />
+            <div class="wordmark" aria-hidden="true">Stack<br />256</div>
+          </a>
+
+          <nav class="header-links">
+            <a href="/paco/">Paco</a>
+            <a href="/docket/">Docket</a>
+            <a href="/kanbanica/">Kanbanica</a>
+            <a href="/scheduled/">Schduled</a>
+            <a href="/shapio/">Shapio</a>
+            <a href="/nextjs-starter/" aria-current="page">Next.js Starter</a>
+            <a href="https://apt.stack256.org">Packages</a>
+            <a href="https://github.com/Stack256org">GitHub</a>
+          </nav>
+        </div>
+      </header>
+
+      <main id="main">
+        <div class="hero">
+          <img class="product-mark" src="/assets/nextjs-starter-mark.svg" alt="" width="80" height="80" />
+          <span class="eyebrow"><span class="dot"></span>Stack256 &middot; 006</span>
+          <h1>
+            A Next.js starter
+            <span class="accent">built for self-hosting.</span>
+          </h1>
+          <p class="lede">
+            A production-ready Next.js template with TypeScript, App Router, Drizzle
+            ORM + PostgreSQL, pgBoss job queues, and the DaisyUI design system.
+            Everything you need to ship a modern, self-hostable web application —
+            the reference stack for new Stack256 projects.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn--primary" href="https://github.com/Stack256org/nextjs-starter"
+              >Source on GitHub &rarr;</a
+            >
+            <a class="btn" href="#install">How to use it</a>
+          </div>
+        </div>
+
+        <section>
+          <h2>What makes it different</h2>
+          <p class="section-lede">
+            Most Next.js starters leave the hard parts to you. This one ships
+            with them already solved — so you can start building features on day
+            one.
+          </p>
+          <ul class="principles">
+            <li>
+              <h3><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M4 6h16v2H4zM4 11h16v2H4zM4 16h10v2H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+</svg>Everything but the app code</h3>
+              <p>
+                Database, migrations, job queues, auth hooks, and styling are all
+                wired up. What remains is uniquely yours.
+              </p>
+            </li>
+            <li>
+              <h3><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M12 2L2 7v10c0 5.5 6.5 14 10 14s10-8.5 10-14V7l-10-5z" fill="none" stroke="currentColor" stroke-width="2"/>
+</svg>Type-safe end to end</h3>
+              <p>
+                TypeScript everywhere — schema, queries, API routes, and UI. No
+                runtime surprises from data shape mismatches.
+              </p>
+            </li>
+            <li>
+              <h3><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+  <rect x="4" y="8" width="16" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+  <line x1="8" y1="4" x2="16" y2="4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+</svg>Self-hostable by design</h3>
+              <p>
+                PostgreSQL, background workers, and a build you deploy anywhere
+                Docker or Node.js runs. No vendor lock-in, no accounts required.
+              </p>
+            </li>
+          </ul>
+        </section>
+
+        <section id="install">
+          <h2>Using it</h2>
+          <p class="section-lede">
+            One template, two processes: the app and the worker. Both need a
+            PostgreSQL database, which you point to with an environment variable.
+          </p>
+
+          <ol class="steps">
+            <li>
+              <h3>Clone and install</h3>
+              <p>The whole stack is in one repository, ready to run.</p>
+              <pre><code>git clone https://github.com/Stack256org/nextjs-starter.git
+cd nextjs-starter
+npm install</code></pre>
+            </li>
+            <li>
+              <h3>Point at PostgreSQL</h3>
+              <p>
+                Copy the example environment file and set your
+                <code>DATABASE_URL</code>. One setting runs both the database
+                and the job queue.
+              </p>
+              <pre><code>cp .env.example .env.local</code></pre>
+            </li>
+            <li>
+              <h3>Migrate and run</h3>
+              <p>
+                The app, a worker (background jobs), and a one-off migrate step
+                each run as their own command.
+              </p>
+              <pre><code>npm run db:migrate
+npm run dev
+npm run worker</code></pre>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>What it needs</h2>
+          <table class="spec">
+            <tbody>
+              <tr>
+                <th scope="row">Host</th>
+                <td>
+                  Anything that runs Node.js &mdash; bare metal, a VPS, Docker,
+                  Coolify, Kubernetes
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Database</th>
+                <td>
+                  PostgreSQL 14+ &mdash; local, Docker, or a cloud provider
+                  (Neon, Supabase, AWS RDS)
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Architectures</th>
+                <td><code>x86_64</code> and <code>arm64</code></td>
+              </tr>
+              <tr>
+                <th scope="row">Processes</th>
+                <td>
+                  The app, a worker (email and background jobs), and a
+                  one-off migrate step
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Health check</th>
+                <td>
+                  <code>GET /</code> returns 200 when the app is serving
+                  traffic; add a health endpoint as you build
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Licence</th>
+                <td>MIT</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h2>Have a look at the code</h2>
+          <p class="section-lede">
+            This is the sixth of 256. It's a starter, not a product on its own
+            &mdash; it's the reference implementation for every Stack256 app that
+            follows. The README covers full setup, environment variables, and
+            the database/worker commands in detail.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn--primary" href="https://github.com/Stack256org/nextjs-starter"
+              >Source on GitHub &rarr;</a
+            >
+            <a
+              class="btn"
+              href="https://github.com/Stack256org/nextjs-starter/blob/main/README.md"
+              >The README</a
+            >
+            <a class="btn" href="/shapio/">Shapio, the feedback board &rarr;</a>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <a href="/">Stack256</a>
+        <a href="https://github.com/Stack256org/nextjs-starter">GitHub</a>
+        <a href="https://apt.stack256.org">Packages</a>
+        <span class="spacer">Open source, and self-hosted, all the way down.</span>
+      </footer>
+    </div>
+  </body>
+</html>
