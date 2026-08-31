@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Brainer — your docs are nodes in your code graph · Stack256</title>
+    <meta
+      name="description"
+      content="Brainer indexes your code and your prose into one graph. Change a function and know which paragraph of documentation just became a lie. Runs locally, no API key."
+    />
+    <meta name="theme-color" content="#1c1b1b" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Brainer — your docs are nodes in your code graph" />
+    <meta
+      property="og:description"
+      content="Change a function, know which paragraph of marketing copy just became a lie. Start a task, get the files that matter without the search loop."
+    />
+    <meta property="og:url" content="https://stack256.org/brainer/" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/assets/brainer-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/assets/site.css" />
+    <style>
+      :root {
+        --brand: #f59e0b;
+        --brand-rgb: 245 158 11;
+        --brand-ink: #4a2f05;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="wrap">
+      <header>
+        <div class="header-row">
+          <a class="logo" href="/" aria-label="Stack256 home">
+            <img src="/assets/stack256-mark.svg" alt="" width="44" height="80" />
+            <div class="wordmark" aria-hidden="true">Stack<br />256</div>
+          </a>
+
+          <nav class="header-links">
+            <a href="/paco/">Paco</a>
+            <a href="/docket/">Docket</a>
+            <a href="/kanbanica/">Kanbanica</a>
+            <a href="/scheduled/">Schduled</a>
+            <a href="/shapio/">Shapio</a>
+            <a href="/nextjs-starter/">Next.js Starter</a>
+            <a href="/brainer/" aria-current="page">Brainer</a>
+            <a href="https://apt.stack256.org">Packages</a>
+            <a href="https://github.com/Stack256org/brainer">GitHub</a>
+          </nav>
+        </div>
+      </header>
+
+      <main id="main">
+        <div class="hero">
+          <img class="product-mark" src="/assets/brainer-mark.svg" alt="" width="80" height="80" />
+          <span class="eyebrow"><span class="dot"></span>Stack256 &middot; 007</span>
+          <h1>
+            Your docs are nodes
+            <span class="accent">in your code graph.</span>
+          </h1>
+          <p class="lede">
+            Every code-intelligence tool can tell you what calls what. None can
+            tell you that your landing page still advertises the feature you
+            renamed last Tuesday. Brainer indexes your code <em>and</em> your
+            prose into one graph, so changing a function shows you the
+            paragraph that just became a lie.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn--primary" href="https://github.com/Stack256org/brainer"
+              >Source on GitHub &rarr;</a
+            >
+            <a class="btn" href="#install">How to use it</a>
+          </div>
+        </div>
+
+        <section>
+          <h2>What makes it different</h2>
+          <p class="section-lede">
+            There is no shortage of tools that turn a codebase into a graph.
+            Every one of them stops at the code. Brainer's graph has a node type
+            none of them have: prose.
+          </p>
+          <ul class="principles">
+            <li>
+              <h3><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M4 6h7v12H4zM13 6h7v12h-7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M11 12h2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+</svg>Prose is a first-class node</h3>
+              <p>
+                A heading and its body, a README section, a line of landing-page
+                copy &mdash; indexed, linked to the symbols it describes, and
+                traversed like any other edge.
+              </p>
+            </li>
+            <li>
+              <h3><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M3 17l6-6 4 4 8-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>Confidence you can act on</h3>
+              <p>
+                A similarity score of 0.50 sounds like a coin flip. Measured
+                against a labelled set, it means the link is right 98% of the
+                time. Brainer reports the probability, not the raw number.
+              </p>
+            </li>
+            <li>
+              <h3><svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+  <rect x="3" y="10" width="18" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+  <path d="M8 10V7a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2"/>
+</svg>Nothing leaves your machine</h3>
+              <p>
+                Embeddings run on-device from a 24MB model. No API key, no
+                account, no network after the one-time download &mdash; so it
+                works offline and inside cloud agent sessions without secrets.
+              </p>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>It also stops your agent searching blind</h2>
+          <p class="section-lede">
+            An agent starting a task greps, globs, reads, discards, and greps
+            again. Every round costs tokens, and it still misses things. One
+            graph query replaces the loop &mdash; and because Brainer runs
+            before the agent starts, nobody has to remember to ask for it.
+          </p>
+          <table class="spec">
+            <tbody>
+              <tr>
+                <th scope="row">Files found that mattered</th>
+                <td>94%, against 48% for a keyword search</td>
+              </tr>
+              <tr>
+                <th scope="row">Tokens spent finding them</th>
+                <td>12.8k, against 21.1k grepping &mdash; and 8&times; cheaper than reading the repo</td>
+              </tr>
+              <tr>
+                <th scope="row">Cost of leaving it always on</th>
+                <td>36 tokens per turn; one grep round-trip is 800&ndash;2000</td>
+              </tr>
+              <tr>
+                <th scope="row">Works with</th>
+                <td>
+                  Claude Code, Codex, Cursor, Copilot, Zed, Windsurf &mdash; over
+                  MCP, skills, hooks, or plain CLI
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="install">
+          <h2>Using it</h2>
+          <p class="section-lede">
+            Install it from GitHub, wire up every agent on the machine, and
+            build the index. After that it runs on its own. It is not on a
+            public registry yet, so install from the repository directly.
+          </p>
+
+          <ol class="steps">
+            <li>
+              <h3>Install and wire it up</h3>
+              <p>
+                Detects Claude Code, Cursor, VS Code, Zed and the shared skills
+                directory, and writes the right config to each.
+              </p>
+              <pre><code>npm install -g github:stack256org/brainer
+brainer install</code></pre>
+            </li>
+            <li>
+              <h3>Build the index</h3>
+              <p>
+                Walks the repository, parses it, embeds the cards and links
+                prose to code. About eight seconds for a mid-size project.
+              </p>
+              <pre><code>brainer init</code></pre>
+            </li>
+            <li>
+              <h3>Ask it things</h3>
+              <p>
+                Or do not &mdash; with hooks installed, relevant files are
+                surfaced before you search, and affected documentation is
+                reported after you edit.
+              </p>
+              <pre><code>brainer context "add rate limiting to login"
+brainer surfaces getSession
+brainer serve</code></pre>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>What it needs</h2>
+          <table class="spec">
+            <tbody>
+              <tr>
+                <th scope="row">Runtime</th>
+                <td>Node.js 20+ &mdash; nothing else</td>
+              </tr>
+              <tr>
+                <th scope="row">Network</th>
+                <td>
+                  One 24MB model download, then never again. No API key, no
+                  account, no telemetry
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Storage</th>
+                <td>
+                  A single SQLite file in <code>.brainer/</code>, gitignored
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Languages</th>
+                <td>
+                  TypeScript, TSX, JavaScript, JSX; Markdown, MDX and HTML for
+                  prose
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Architectures</th>
+                <td><code>x86_64</code> and <code>arm64</code></td>
+              </tr>
+              <tr>
+                <th scope="row">Licence</th>
+                <td>MIT</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h2>What it will not do</h2>
+          <p class="section-lede">
+            Some prose describes a project as a whole and points at no code at
+            all &mdash; roughly a sixth of a typical landing page. Brainer
+            returns nothing for those rather than inventing a link, and a
+            semantic guess is always labelled as a guess until you confirm it.
+            The file list it hands an agent is a starting point, not a promise
+            that nothing else matters.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn--primary" href="https://github.com/Stack256org/brainer"
+              >Source on GitHub &rarr;</a
+            >
+            <a
+              class="btn"
+              href="https://github.com/Stack256org/brainer/blob/main/docs/VERIFICATION.md"
+              >How it was measured</a
+            >
+            <a class="btn" href="/nextjs-starter/">The Next.js starter &rarr;</a>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <a href="/">Stack256</a>
+        <a href="https://github.com/Stack256org/brainer">GitHub</a>
+        <a href="https://apt.stack256.org">Packages</a>
+        <span class="spacer">Open source, and self-hosted, all the way down.</span>
+      </footer>
+    </div>
+  </body>
+</html>
